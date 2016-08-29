@@ -1,0 +1,57 @@
+
+
+<div class="main">
+  <div id="base"></div>
+  <div id="wpns"></div>
+  <div id="wall"></div>
+  <canvas id="action" width="300" height="400">Loading</canvas>
+</div>
+
+<button type="button" class="audiopause" (click)="snd.bg.play();">
+  <img src="img/audiostop.svg" />
+</button>
+
+<button type="button" class="audioplay" (click)="snd.bg.pause();">
+  <img src="img/audioplay.svg" />
+</button>
+
+<button type="button" id="start" (click)="st(true)">
+  <img src="img/play.svg" />
+</button>
+<button type="button" id="stop" (click)="stp()">
+  <img src="img/pause.svg" />
+</button>
+
+<div class="life">
+  <div id="life"></div>
+  <span id="lifenumber"></span>
+</div>
+
+<div class="money">
+  ⛃ <span id="money"></span>
+</div>
+
+<div class="control">
+  <button type="button" (click)="fr()">
+    <img src="img/shield.svg" />
+    shield
+  </button>
+  <button type="button" (click)="fr()">
+    <img src="img/mines.svg" />
+    mines
+  </button>
+  <button type="button" (click)="fr()">
+    <img src="img/comets.svg" />
+    comets
+  </button>
+  <button type="button" (click)="fr()">
+    <img src="img/missile.svg" />
+    missile
+  </button>
+  <button type="button" (click)="upgrade()">
+    <img src="img/upgrade.svg" />
+    upgrade
+  </button>
+</div>
+
+<div id="debug"></div>

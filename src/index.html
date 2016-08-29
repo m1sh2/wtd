@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="hidden">
+<head>
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+	<title>Walls To Defense</title>
+	<link href="css/s.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div class="main">
+    <div id="base"></div>
+    <div id="wpns"></div>
+    <div id="wall"></div>
+    <canvas id="action" width="300" height="400">Loading</canvas>
+  </div>
+
+  <button type="button" class="audiopause" onclick="WTD.snd.bg.play();">
+    <img src="img/audiostop.svg" />
+  </button>
+  
+  <button type="button" class="audioplay" onclick="WTD.snd.bg.pause();">
+    <img src="img/audioplay.svg" />
+  </button>
+
+  <button type="button" id="start" onclick="WTD.st(true)">
+    <img src="img/play.svg" />
+  </button>
+  <button type="button" id="stop" onclick="WTD.stp()">
+    <img src="img/pause.svg" />
+  </button>
+  
+  <div class="life">
+    <div id="life"></div>
+    <span id="lifenumber"></span>
+  </div>
+
+  <div class="money">
+    ⛃ <span id="money"></span>
+  </div>
+
+  <div class="control">
+    <button type="button" onclick="WTD.fr()">
+      <img src="img/shield.svg" />
+      shield
+    </button>
+    <button type="button" onclick="WTD.fr()">
+      <img src="img/mines.svg" />
+      mines
+    </button>
+    <button type="button" onclick="WTD.fr()">
+      <img src="img/comets.svg" />
+      comets
+    </button>
+    <button type="button" onclick="WTD.fr()">
+      <img src="img/missile.svg" />
+      missile
+    </button>
+    <button type="button" onclick="WTD.upgrade()">
+      <img src="img/upgrade.svg" />
+      upgrade
+    </button>
+  </div>
+  
+  <div id="debug"></div>
+  
+  <!-- jQuery -->
+  <script type="text/javascript" charset="utf-8" src="js/libs/jquery.js"></script>
+
+  <!-- Index -->
+  <script type="text/javascript" charset="utf-8" src="js/index.js"></script>
+
+  <!-- Helpers -->
+  <script type="text/javascript" charset="utf-8" src="js/helpers/popup.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/helpers/playback.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/helpers/defaults.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/helpers/debug.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/helpers/func.js"></script>
+
+  <!-- Data main -->
+  <script type="text/javascript" charset="utf-8" src="js/data/data.js"></script>
+
+  <!-- Weapon -->
+  <script type="text/javascript" charset="utf-8" src="js/wpn/dr.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/wpn/wpn.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/wpn/data.js"></script>
+
+  <!-- Base -->
+  <script type="text/javascript" charset="utf-8" src="js/base/dr.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/base/base.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/base/data.js"></script>
+
+  <!-- Bullet -->
+  <script type="text/javascript" charset="utf-8" src="js/bullet/dr.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/bullet/data.js"></script>
+
+  <!-- Enemy -->
+  <script type="text/javascript" charset="utf-8" src="js/enemy/dr.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/enemy/data.js"></script>
+  
+  <!-- Sound -->
+  <script type="text/javascript" charset="utf-8" src="js/snd/snd.js"></script>
+
+  <!-- Draw main -->
+  <script type="text/javascript" charset="utf-8" src="js/dr.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
