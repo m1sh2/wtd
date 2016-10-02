@@ -1,4 +1,3 @@
 'use strict';
 
-export * from './home/';
-export * from './gameplay/';
+export { Popup } from './popup/';

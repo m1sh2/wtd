@@ -6,8 +6,12 @@ import {
   RouterConfig
 } from '@angular/router';
 
-import { Home } from './mods/home/home';
-import { Gameplay } from './mods/gameplay/gameplay';
+import { Home } from './pages/home/home';
+import { Gameplay } from './pages/gameplay/gameplay';
+import { Credits } from './pages/credits/credits';
+import { Settings } from './pages/settings/settings';
+import { Exit } from './pages/exit/exit';
+import { Levels } from './pages/levels/levels';
 
 const routes: RouterConfig = [
   {
@@ -20,8 +24,24 @@ const routes: RouterConfig = [
     component: Home
   },
   {
-    path: 'gameplay',
+    path: 'gameplay/:levelId',
     component: Gameplay
+  },
+  {
+    path: 'settings',
+    component: Settings
+  },
+  {
+    path: 'credits',
+    component: Credits
+  },
+  {
+    path: 'exit',
+    component: Exit
+  },
+  {
+    path: 'levels',
+    component: Levels
   },
   {
     path: '**',
