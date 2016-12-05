@@ -1,0 +1,98 @@
+
+
+<div class="wall-field">
+  <canvas id="action" width="300" height="400">Loading</canvas>
+  <div id="wall"></div>
+  <div id="wpns"></div>
+  <div id="base">
+  </div>
+
+  <button type="button" id="start" (click)="st(true)">
+    <img src="{{this.imagesUrl}}play.svg" />
+  </button>
+  <button type="button" id="stop" (click)="stp()">
+    <img src="{{this.imagesUrl}}pause.svg" />
+  </button>
+</div>
+
+<div class="village-field">
+  <div class="village-bank">bank</div>
+  <div class="village-mine">mine</div>
+  <div class="village-lab">lab</div>
+  <div class="village-weapon-factory">weapon factory</div>
+  <div class="village-airport">airport</div>
+  <div class="village-airfleet-factory">airfleet factory</div>
+  <div class="village-central-square">central square</div>
+</div>
+
+<div class="buttons-panel">
+  <div
+    class="button-cell"
+    *ngFor="let defenseItem of defenseItems"
+    >
+    <button
+      type="button"
+      class="defense"
+      (click)="defenseItem.action()">
+      <img
+        [src]="defenseItem.icon"
+        />
+      {{defenseItem.name}}
+      <span class="cost">{{defenseItem.cost}}</span>
+    </button>
+  </div>
+  <div
+    class="button-cell"
+    *ngFor="let attackItem of attackItems"
+    >
+    <button
+      type="button"
+      class="attack"
+      (click)="attackItem.action()">
+      <img
+        [src]="attackItem.icon"
+        />
+      {{attackItem.name}}
+      <span class="cost">{{attackItem.cost}}</span>
+    </button>
+  </div>
+  <div class="button-cell">
+    <button
+      type="button"
+      class="village-wall-switch"
+      (click)="switchWallVillage()">
+      <img
+        [src]="getSwitchIcon()"
+        />
+      TO
+      <span class="cost">{{getSwitchName()}}</span>
+    </button>
+  </div>
+</div>
+
+<button type="button" class="audiopause" (click)="snd.bg.play();">
+  <img src="{{this.imagesUrl}}audiostop.svg" />
+</button>
+
+<button type="button" class="audioplay" (click)="snd.bg.pause();">
+  <img src="{{this.imagesUrl}}audioplay.svg" />
+</button>
+
+<div class="top-panel">
+  <button class="button menu" (click)="openMenu()">
+    Menu
+  </button>
+
+  <div class="life">
+    <div id="life"></div>
+    <span id="lifenumber"></span>
+  </div>
+
+  <div class="money">
+    $<span id="money"></span>
+  </div>
+</div>
+
+
+
+<div id="debug"></div>

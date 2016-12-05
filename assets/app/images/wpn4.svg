@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <pattern id="pattern-0" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" viewBox="0 0 100 100">
+      <path d="M 0 0 L 50 0 L 50 100 L 0 100 Z" style="fill: black;"/>
+    </pattern>
+    <linearGradient id="gradient-0" gradientUnits="userSpaceOnUse" x1="16" y1="0" x2="16" y2="14" gradientTransform="matrix(0, -1.993124, 1.993125, 0, 159.567551, 94.541164)" spreadMethod="reflect">
+      <stop offset="0" style="stop-color: rgba(101, 101, 101, 1)"/>
+      <stop offset="1" style="stop-color: rgba(50, 50, 50, 1)"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="160" cy="214.831" rx="105.169" ry="105.169" style="fill: rgb(201, 201, 201);"/>
+  <ellipse cx="214.899" cy="214.6" rx="36.516" ry="36.516" style="fill: rgb(0, 120, 249);"/>
+  <path d="M 160 38.493 L 160 38.493 C 175.982 38.493 188.934 46.083 188.934 55.458 L 188.934 118.064 C 188.934 127.438 175.982 135.029 160 135.029 L 160 135.029 C 144.018 135.029 131.064 127.438 131.064 118.064 L 131.064 55.458 C 131.064 46.083 144.018 38.493 160 38.493 Z M 131.064 0 L 188.934 0 L 188.934 91.289 L 131.064 91.289 L 131.064 0 Z" style="fill: url(#gradient-0);" bx:origin="0 0"/>
+  <path d="M 23.422 -244.401 Q 23.422 -319.217 47.048 -244.401 L 47.048 -244.401 Q 70.673 -169.585 47.048 -169.585 L 47.048 -169.585 Q 23.422 -169.585 23.422 -244.401 Z" style="fill: rgb(49, 49, 49);" transform="matrix(1, 0, 0, -1, 0, 0)" bx:shape="triangle 23.422 -319.217 47.251 149.632 0 0.5 1@6f0edd4e"/>
+  <path d="M 272.953 -244.401 Q 296.578 -319.217 296.578 -244.401 L 296.578 -244.401 Q 296.578 -169.585 272.953 -169.585 L 272.953 -169.585 Q 249.327 -169.585 272.953 -244.401 Z" style="fill: rgb(49, 49, 49);" transform="matrix(1, 0, 0, -1, 0, 0)" bx:shape="triangle 249.327 -319.217 47.251 149.632 1 0.5 1@8ee2ee13"/>
+  <rect x="74.987" y="184.433" width="88.946" height="24.865" style="fill: rgb(201, 0, 0);"/>
+  <rect x="74.987" y="222.11" width="88.946" height="24.865" style="fill: rgb(201, 0, 0);"/>
+  <ellipse cx="81.773" cy="287.265" rx="9.645" ry="9.645" style="fill: rgb(93, 93, 93);" transform="matrix(1.000001, 0, 0, 1, 49.735249, -4.572052)"/>
+  <ellipse cx="121.662" cy="271.332" rx="9.645" ry="9.645" transform="matrix(0.999999, 0, 0, 1, 38.33862, 11.361084)" style="fill: rgb(93, 93, 93);"/>
+  <ellipse cx="188.491" cy="282.693" rx="9.645" ry="9.645" style="fill: rgb(93, 93, 93);"/>
+</svg>
