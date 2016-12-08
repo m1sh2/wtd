@@ -11,12 +11,15 @@ import { AppCmp } from './app.cmp';
 import { TaskModule } from './task';
 import { HomeCmp } from './home';
 import { Game } from './game';
+import { Popup } from './popup';
+import { Page } from './page';
 
 @NgModule({
   declarations: [
     AppCmp,
     HomeCmp,
-    Game
+    Game,
+    Popup
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import { Game } from './game';
     UserModule,
     TaskModule
   ],
+  providers: [ Page ],
   bootstrap: [ AppCmp ]
 })
 export class AppModule {

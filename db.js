@@ -1,8 +1,12 @@
 // Bring Mongoose into the app
-var mongoose = require( 'mongoose' );
+var mongoose = require('mongoose');
 
 // Build the connection string
-var dbURI = 'mongodb://wtd:9Nopsir6BZhq@ds119788.mlab.com:19788/wtd';
+var dbURI = 'localhost:27017/wtd';
+
+if (process.env.NODE_ENV === 'production') {
+  dbURI = 'mongodb://wtd:9Nopsir6BZhq@ds119788.mlab.com:19788/wtd';
+}
 
 // Create the database connection
 mongoose.connect(dbURI);

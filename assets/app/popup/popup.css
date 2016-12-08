@@ -1,0 +1,54 @@
+.popup {
+  position: absolute;
+  z-index: 100;
+  width: 300px;
+  background: #4ebb66;
+  border-radius: 5px;
+  border: 1px solid white;
+  height: 70%;
+  top: 15%;
+  left: 50%;
+  margin-left: -150px;
+}
+.popup:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 70%;
+  background: -moz-linear-gradient(top, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%);
+  background: -webkit-linear-gradient(top, rgba(255,255,255,0.5) 0%,rgba(255,255,255,0) 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.5) 0%,rgba(255,255,255,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3ffffff', endColorstr='#00ffffff',GradientType=0 );
+}
+
+.popup-side {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.popup-close {
+
+}
+
+.popup-body {
+  padding: 10px;
+}
+
+.popup-title {
+  padding: 0px 0 0;
+  margin: 0 auto;
+  height: 30px;
+  line-height: 30px;
+  max-width: 230px;
+}
+
+.popup-content {
+  padding: 10px 0 0;
+}

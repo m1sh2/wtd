@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "PORT=8000 node ./bin/www",
-    "watch": "concurrently \"npm run start\" \"npm run watch:build\"",
-    "watch:build": "del-cli public/js/app && webpack --config webpack.config.dev.js --progress --profile --watch",
+    "start": "PORT=8000 NODE_ENV=production node ./bin/www",
+    "start:dev": "PORT=8000 NODE_ENV=development node ./bin/www",
+    "watch": "concurrently \"npm run start:dev\" \"npm run build:dev\"",
+    "build:dev": "del-cli public/js/app && webpack --config webpack.config.dev.js --progress --profile --watch",
     "build:prod": "del-cli public/js/app && ngc -p tsconfig.aot.json && ngc -p tsconfig.aot.json && webpack --config webpack.config.prod.js --progress --profile --bail && del-cli 'public/js/app/**/*.js' 'public/js/app/**/*.js.map' '!public/js/app/bundle.js' '!public/js/app/*.chunk.js' 'assets/app/**/*.ngfactory.ts' 'assets/app/**/*.shim.ts'"
   },
   "dependencies": {

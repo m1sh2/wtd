@@ -71,5 +71,7 @@ export class GameConstructor {
   defenseItems: Array<any> = [];
   attackItems: Array<any> = [];
 
-  switchToVillage: boolean = false
+  switchToVillage: boolean = false;
+
+  optionsPopup: any = {};
 }

@@ -10,6 +10,11 @@ import { GameConstructor } from './game.constructor';
 import * as _ from 'lodash';
 import * as $ from 'jquery';
 const uuid = require('uuid/v4');
+import { Page } from '../page';
+
+import { Log, Level } from 'ng2-logger/ng2-logger';
+const log = Log.create('Game');
+log.color = 'orange';
 
 @Component({
   templateUrl: './game.html',
@@ -47,9 +52,8 @@ export class Game extends GameConstructor {
   attackItems: Array<any> = [];
 
   constructor(
-    // private lsm: Lsm,
     private router: Router,
-    // private app: App,
+    private page: Page,
     private activeRoute: ActivatedRoute
   ) {
     super();
@@ -395,7 +399,7 @@ export class Game extends GameConstructor {
   ngOnInit() {
     this.activeRoute.params.forEach((params: Params) => {
       let levelId = params['levelId'];
-      console.warn(levelId);
+      log.i('activeRoute', levelId, params);
       this.start();
     });
   }
@@ -514,7 +518,7 @@ export class Game extends GameConstructor {
       });
 
       if (!!this.WPOS['p' + pos.pos]) {
-        console.info(this.WPOS['p' + pos.pos]);
+        log.i('WPOS', this.WPOS['p' + pos.pos]);
         wpnPos.addClass('occupied')
       }
 
@@ -568,7 +572,7 @@ export class Game extends GameConstructor {
     if (this.wpnsCurrent.length) {
       for (let i=0;i < this.wpnsCurrent.length;i ++ ) {
         let wpnBase = this.wpnsCurrent[i];
-        // console.info(wpnBase);
+        // log.i('wpnBase', wpnBase);
         this.drWeapon(wpnBase);
       }
     }
@@ -803,7 +807,7 @@ export class Game extends GameConstructor {
     } else if (typeof a === 'object') {
       result = a.join(' ');
     }
-    // console.info(result);
+    // log.i('debug', result);
   }
 
   // Defaults
@@ -963,7 +967,7 @@ export class Game extends GameConstructor {
     //  timer = 0;
     // }
 
-    // console.info(this, this.BASE);
+    // log.i('st', this, this.BASE);
     if (this.BASE.life > 0 && this.ENYS.length > 0) {
       this.dr();
       this.t = setTimeout(() => {
@@ -1139,7 +1143,6 @@ export class Game extends GameConstructor {
     let debug = [];
     let pos: any;
     let wpnsSize = Object.keys(this.wpns).length;
-
 
     this.BASE.wpns.forEach((wpn) => {
 
@@ -1458,60 +1461,37 @@ export class Game extends GameConstructor {
   }
 
   openMenu() {
-    let msg: any = {};
     let self = this;
+    const menuButtons = [
+      {
+        title: 'Credits',
+        action: () => {
+          self.openCredits()
+        },
+        button: true
+      }
+    ];
+    let options = {
+      isOpen: true,
+      title: 'Game menu',
+      content: menuButtons,
+    };
 
-    msg.title = 'Menu';
-    msg.content = $('<div/>');
-    msg.cls = 'popup menu';
-
-    const credits = $('<button/>');
-    credits.addClass('button').click(() => {
-      self.openCredits();
-    });
-    
-    msg.content.append(credits);
-
-    // this.app.openPopup(msg);
+    this.optionsPopup = options;
   }
 
   openCredits() {
     let content = '<h1>Credits</h1>';
-    this.openPage(content);
+    this.page.open(content);
   }
 
   openSettings() {
     let content = '<h1>Settings</h1>';
-    this.openPage(content);
+    this.page.open(content);
   }
 
   openExit() {
     let content = '<h1>Exit</h1>';
-    this.openPage(content);
-  }
-
-  openPage(content) {
-    let page = $('<div/>');
-    let pageContent = $('<div/>');
-    let closePage = $('<span/>');
-    let body = $('body');
-
-    pageContent.html(content)
-      .addClass('page-content');
-    
-    page.append(pageContent)
-      .addClass('page')
-      .css('left', '100%');
-    
-    closePage.addClass('button')
-      .addClass('page-close')
-      .click(() => {
-        page.animate({left: '100%'}, 500, () => {
-          page.remove();
-        })
-      });
-
-    body.append(page);
-    page.animate({left: '0%'}, 500);
+    this.page.open(content);
   }
 }

@@ -14,7 +14,8 @@ module.exports = webpackMerge(commonConfig, {
 
   plugins: [
     new DefinePlugin({
-      'API': JSON.stringify('http://localhost:8000/api/')
+      'API': JSON.stringify('http://localhost:8000/api/'),
+      'process.env.NODE_ENV': JSON.stringify('development')
     })
   ]
 });

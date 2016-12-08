@@ -78,6 +78,7 @@ body {
   margin:0;
   padding:0 0 0px;
   min-height:100%;
+  height: 100%;
   color:#fff;
   width:auto;
   overflow:hidden;
@@ -127,6 +128,7 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: normal;
   margin: 0;
   padding: 10px 0 20px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 h1 {
   text-align: center;
@@ -153,7 +155,7 @@ audio {
 
 /* Component styles */
 
-app-root {
+app {
   display: block;
   min-height: 100%;
   height: 100%;
@@ -242,14 +244,18 @@ app-root {
 
 .loading {
   display: block;
-  margin: 0 auto;
-  width: 30px;
-  height: 30px;
-  border: 4px dashed #2196F3;
-  border-radius: 4px;
+  margin: -15px 0 0 -15px;
+  width: 10px;
+  height: 10px;
+  border: 10px ridge #2196F3;
+  border-color: #2196F3 #4ebb66;
+  border-radius: 30px;
   -webkit-animation: spin 4s linear infinite;
   -moz-animation: spin 4s linear infinite;
   animation: spin 4s linear infinite;
+  position: absolute;
+  left: 50%;
+  top: 50%;
 }
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }

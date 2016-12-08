@@ -34,7 +34,8 @@ module.exports = webpackMerge.smart(commonConfig, {
       sourceMap: false
     }),
     new DefinePlugin({
-      'API': JSON.stringify('https://wtd.herokuapp.com/api/')
+      'API': JSON.stringify('https://wtd.herokuapp.com/api/'),
+      'process.env.NODE_ENV': JSON.stringify('production')
     })
   ]
 });

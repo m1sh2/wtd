@@ -1,0 +1,37 @@
+
+<div [hidden]="!options.isOpen">
+  <div class="popup-side" (click)="options.isOpen = false"></div>
+  <div class="popup">
+    <span class="popup-close button button-close" (click)="options.isOpen = false">&times;</span>
+    <div class="popup-body">
+      <h3
+        class="popup-title"
+        [hidden]="!options.title"
+        [innerHtml]="options.title"
+        >
+      </h3>
+
+      <div [hidden]="!options.content">
+        <div
+          class="popup-content"
+          *ngIf="isContentString()"
+          [innerHtml]="options.content"
+          >
+        </div>
+
+        <div
+          class="popup-content"
+          *ngIf="isContentObject()"
+          >
+          <div
+            *ngFor="let item of options.content"
+            [class.button]="item.button"
+            [innerHtml]="item.title"
+            (click)="item.action()"
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
