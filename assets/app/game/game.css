@@ -86,8 +86,12 @@
   border-radius: 4px;
 }
 
-#wpns .wpn-pos.occupied {
-  opacity: 0;
+.wpn-pos:hover {
+  background: rgba(255,255,0,0.2);
+}
+
+.wpn-pos.occupied {
+  display: none;
 }
 
 #base {
@@ -638,6 +642,15 @@ button.village-wall-switch .cost {
   display: block;
   cursor: pointer;
 }
+
+
+
+
+
+
+
+
+
 
 
 

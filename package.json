@@ -7,7 +7,8 @@
     "start:dev": "PORT=8000 NODE_ENV=development node ./bin/www",
     "watch": "concurrently \"npm run start:dev\" \"npm run build:dev\"",
     "build:dev": "del-cli public/js/app && webpack --config webpack.config.dev.js --progress --profile --watch",
-    "build:prod": "del-cli public/js/app && ngc -p tsconfig.aot.json && ngc -p tsconfig.aot.json && webpack --config webpack.config.prod.js --progress --profile --bail && del-cli 'public/js/app/**/*.js' 'public/js/app/**/*.js.map' '!public/js/app/bundle.js' '!public/js/app/*.chunk.js' 'assets/app/**/*.ngfactory.ts' 'assets/app/**/*.shim.ts'"
+    "build:prod": "del-cli public/js/app && ngc -p tsconfig.aot.json && ngc -p tsconfig.aot.json && webpack --config webpack.config.prod.js --progress --profile --bail && del-cli 'public/js/app/**/*.js' 'public/js/app/**/*.js.map' '!public/js/app/bundle.js' '!public/js/app/*.chunk.js' 'assets/app/**/*.ngfactory.ts' 'assets/app/**/*.shim.ts'",
+    "server": "light-server -s . -p 8000"
   },
   "dependencies": {
     "@angular/common": "2.0.1",
@@ -52,6 +53,7 @@
     "del-cli": "^0.2.0",
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.4",
+    "light-server": "^1.1.7",
     "ng2-logger": "^0.1.21",
     "raw-loader": "^0.5.1",
     "typescript": "^2.1.1",

@@ -21,36 +21,6 @@ log.color = 'orange';
   styleUrls: ['./game.css']
 })
 export class Game extends GameConstructor {
-
-  // Bullet
-  BULL: Array<any>;
-  bullets: Array<any>;
-
-  // Enemy
-  objs: Array<any>;
-  waves: Array<any>;
-  wave: any;
-  ENY: any;
-  ENYS: Array<any>;
-  LVL: any;
-  LVLS: Array<any>;
-  enemy: any;
-
-  // Sound
-  sbg: any;
-  snd: any;
-
-  // Weapons
-  ww: number;
-  wh: number;
-  WPOS: any;
-  wpns: any;
-  max: any;
-  wpnsCurrent: any;
-
-  defenseItems: Array<any> = [];
-  attackItems: Array<any> = [];
-
   constructor(
     private router: Router,
     private page: Page,
@@ -58,33 +28,13 @@ export class Game extends GameConstructor {
   ) {
     super();
 
-    this.wallTop = this.sets.h - 118;
-
-    this.base.id = uuid()
-
     let xw = this.sets.w / 6;
     let yw = this.sets.h - 88;
 
-    this.base.lvls.push({
-      life: 10000,
-      wpns: [
-        {x: xw * 1, y: yw, pos: 1},
-        {x: xw * 2, y: yw, pos: 2},
-        {x: xw * 3, y: yw, pos: 3},
-        {x: xw * 4, y: yw, pos: 4},
-        {x: xw * 5, y: yw, pos: 5}
-      ],
-      img: this.imagesUrl + 'base1.jpg'
-    });
-
-    this.base.life0 = this.base.lvls[this.base.lvl].life;
+    this.base.id = uuid()
+    this.base.life0 = this.baseLevelsLife[this.base.level];
     this.base.life = this.base.life0;
-    this.baseWpnPos = {
-      w: 40,
-      h: 40
-    };
-
-    this.BASE = {};
+    this.BASE = this.getBase();
 
     // Bullet
     this.BULL = [];
@@ -386,7 +336,7 @@ export class Game extends GameConstructor {
       name: 'Upgrade',
       action: () => {
         this.upgrade();
-        this.baseLvl();
+        this.baseUpdateLevel();
       },
       url: '',
       icon: this.imagesUrl + 'btn-upgrade.svg',
@@ -425,16 +375,16 @@ export class Game extends GameConstructor {
   dr() {
     let debug = ['dr'];
 
-    this.drClear();
+    this.drawClear();
 
-    this.drBullets();
-    this.drBase();
-    this.drEnemies();
+    this.drawBullets();
+    this.drawBase();
+    this.drawEnemies();
 
     this.debug(debug);
   }
 
-  drClear() {
+  drawClear() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.beginPath();
     // ctx.save();
@@ -452,9 +402,9 @@ export class Game extends GameConstructor {
   }
 
   // Base
-  baseLvl() {
-    if (this.base.lvl < this.base.lvls.length - 1) {
-      this.base.lvl = this.base.lvl + 1;
+  baseUpdateLevel() {
+    if (this.base.level < this.base.levels.length - 1) {
+      this.base.level = this.base.level + 1;
       this.CLICK = this.CLICK.filter((c) => {
         return c.type !== 'wpnPos';
       });
@@ -480,50 +430,51 @@ export class Game extends GameConstructor {
   getBase() {
     let self = this;
     let debug = ['getBase'];
-    let baseTmp = $.extend({}, this.base.lvls[this.base.lvl]);
+    let baseTmp = $.extend({}, this.base.levels[this.base.level]);
     baseTmp.x = this.base.x;
     baseTmp.y = this.base.y;
     baseTmp.w = this.base.w;
     baseTmp.h = this.base.h;
     baseTmp.life0 = baseTmp.life;
-    baseTmp.lvl = this.base.lvl;
+    baseTmp.level = this.base.level;
+    baseTmp.weapons = this.baseLevelsWeapons[this.base.level];
 
     this.debug(debug);
     this.BASE = baseTmp;
     
     const attrs = [];
-    $.each($('#wpns')[0].attributes, function() {
-      if(this.specified && this.name !== 'id') {
-        attrs.push({
-          name: this.name,
-          value: this.value
-        });
-      }
-    });
+    // $.each($('#wpns')[0].attributes, function() {
+    //   if(this.specified && this.name !== 'id') {
+    //     attrs.push({
+    //       name: this.name,
+    //       value: this.value
+    //     });
+    //   }
+    // });
 
-    $('#wpns .wpn-pos').remove();
-    this.BASE.wpns.forEach((pos) => {
-      let wpnPos = $(document.createElement('div'));
-      wpnPos
-        .addClass('wpn-pos')
-        .css({
-          left: pos.x - 20 + 'px'
-        })
-        .click(function(e) {
-          self.selectWpn($(this).offset(), pos);
-        });
+    // $('#wpns .wpn-pos').remove();
+    // this.BASE.wpns.forEach((pos) => {
+    //   let wpnPos = $(document.createElement('div'));
+    //   wpnPos
+    //     .addClass('wpn-pos')
+    //     .css({
+    //       left: pos.x - 20 + 'px'
+    //     })
+    //     .click(function(e) {
+    //       self.selectWpn($(this).offset(), pos);
+    //     });
       
-      attrs.forEach((attr) => {
-        wpnPos.attr(attr.name, attr.value);
-      });
+    //   attrs.forEach((attr) => {
+    //     wpnPos.attr(attr.name, attr.value);
+    //   });
 
-      if (!!this.WPOS['p' + pos.pos]) {
-        log.i('WPOS', this.WPOS['p' + pos.pos]);
-        wpnPos.addClass('occupied')
-      }
+    //   if (!!this.WPOS['p' + pos.pos]) {
+    //     log.i('WPOS', this.WPOS['p' + pos.pos]);
+    //     wpnPos.addClass('occupied')
+    //   }
 
-      $('#wpns').append(wpnPos);
-    });
+    //   $('#wpns').append(wpnPos);
+    // });
 
 
   }
@@ -540,11 +491,11 @@ export class Game extends GameConstructor {
     return posTmp;
   }
 
-  drBase() {
+  drawBase() {
     let o = this.BASE;
-    let debug = ['drBase', this.BASE.lvl];
-    // $('#debug').html('drBase' + o.lvl + ' ' + objs.length);
-    // let baseCurrent = o.lvls[o.lvl];
+    let debug = ['drawBase', this.BASE.level];
+    // $('#debug').html('drawBase' + o.level + ' ' + objs.length);
+    // let baseCurrent = o.levels[o.level];
 
     // ctx.beginPath();
     // ctx.save();
@@ -563,11 +514,11 @@ export class Game extends GameConstructor {
       life = 0;
     }
 
-    $('#money').html(this.mny(this.sets.money));
+    $('#money').html(this.money(this.sets.money));
     $('#lifenumber').html(o.life);
     $('#life').width(life + '%');
     $('#base')[0].className = '';
-    $('#base').addClass('base-' + (this.BASE.lvl + 1));
+    $('#base').addClass('base-' + (this.BASE.level + 1));
 
     if (this.wpnsCurrent.length) {
       for (let i=0;i < this.wpnsCurrent.length;i ++ ) {
@@ -580,7 +531,7 @@ export class Game extends GameConstructor {
   }
 
   // Bullet
-  drBullets() {
+  drawBullets() {
     for (let i = 0;i < this.BULL.length;i++ ) {
       this.drBullet(this.BULL[i]);
     }
@@ -665,8 +616,8 @@ export class Game extends GameConstructor {
   }
 
   // Enemy
-  drEnemies() {
-    let debug = ['drEnemies'];
+  drawEnemies() {
+    let debug = ['drawEnemies'];
 
     for (let i = 0; i < this.ENYS.length; i ++ ) {
       let id = this.ENYS[i];
@@ -888,7 +839,7 @@ export class Game extends GameConstructor {
     // this.app.openPopup(msg);
   }
 
-  mny(num) {
+  money(num) {
     num = num.toString();
     let newNum = '';
     for (let i = num.length - 1, j = 0; i >= 0; i -- , j ++ ) {
@@ -974,9 +925,9 @@ export class Game extends GameConstructor {
         this.st(false);
       }, 1000 / this.fps);
     } else if (this.BASE.life <= 0) {
-      this.drClear();
-      this.drBase();
-      this.drEnemies();
+      this.drawClear();
+      this.drawBase();
+      this.drawEnemies();
       this.stp();
       // this.app.openPopup({
       //   title: 'Game Over',
@@ -988,8 +939,8 @@ export class Game extends GameConstructor {
       // });
 
     } else if (this.ENYS.length === 0) {
-      this.drClear();
-      this.drBase();
+      this.drawClear();
+      this.drawBase();
       this.stp();
       // this.app.openPopup({
       //   title: 'Victory',
@@ -1010,7 +961,7 @@ export class Game extends GameConstructor {
     $('#stop').hide();
     clearTimeout(this.t);
     this.playing = false;
-    this.drBase();
+    this.drawBase();
   }
 
   // Weapons
@@ -1239,15 +1190,15 @@ export class Game extends GameConstructor {
         }
       });
       this.wpnsCurrent = this.getWpns();
-      this.drClear();
-      this.drBase();
+      this.drawClear();
+      this.drawBase();
     } else {
 
     }
   }
 
   getWpns() {
-    // let baseCurrent = base.lvls[base.lvl];
+    // let baseCurrent = base.levels[base.level];
     // let wpnsBase = wpos;
     let wpnsCurrentTmp = [];
 
@@ -1371,8 +1322,8 @@ export class Game extends GameConstructor {
             self.WPOS['p' + pos.pos] = $(this).data('type');
             self.wpnsCurrent = self.getWpns();
             self.getBase();
-            self.drClear();
-            self.drBase();
+            self.drawClear();
+            self.drawBase();
             cnt.remove();
             cntBg.remove();
           });

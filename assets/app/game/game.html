@@ -3,7 +3,9 @@
 <div class="wall-field">
   <canvas id="action" width="300" height="400">Loading</canvas>
   <div id="wall"></div>
-  <div id="wpns"></div>
+  <div id="wpns">
+    <div class="wpn-pos" *ngFor="let wpnPos of BASE.wpns"></div>
+  </div>
   <div id="base">
   </div>
 
