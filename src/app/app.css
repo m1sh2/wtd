@@ -1,0 +1,286 @@
+
+/* Reset styles */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* App styles */
+
+* {
+  outline:none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: fantasy;
+}
+html {
+  background:#333;
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+}
+html.hidden {
+  overflow: hidden;
+}
+body {
+  position:relative;
+  margin:0;
+  padding:0 0 0px;
+  min-height:100%;
+  height: 100%;
+  color:#fff;
+  width:auto;
+  overflow:hidden;
+  background: url(../img/bg-2.png) no-repeat 50% 50%;
+  background-size: cover;
+}
+
+div {
+
+}
+
+button, .button {
+  color: #fff;
+  background: dodgerblue;
+  border: 0px solid #fff;
+  border-radius: 3px;
+  padding: 10px 10px 5px;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.5);
+  letter-spacing: 1px;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 14px;
+  cursor: pointer;
+}
+button:before, .button:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  left: 0;
+  top: 0;
+  background: -moz-linear-gradient(top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 100%);
+  background: -webkit-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3ffffff', endColorstr='#00ffffff',GradientType=0 );
+}
+
+button:hover, .button:hover {
+  background: deepskyblue;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: normal;
+  margin: 0;
+  padding: 10px 0 20px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 26px;
+}
+h2 {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+h3 {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+a {
+  color: #fff;
+}
+audio {
+  display: none;
+}
+
+/* Component styles */
+
+app {
+  display: block;
+  min-height: 100%;
+  height: 100%;
+}
+
+.btn-back {
+  position: fixed;
+  z-index: 1;
+  left: 10px;
+  top: 10px;
+}
+
+.control {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 60px;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+}
+
+.control button {
+  display: inline-block;
+  width: 50px;
+  max-width: 50px;
+  height: 50px;
+  background: rgb(24, 98, 223);
+  border: 2px solid rgba(255,255,255,1);
+  border-radius: 12px;
+  text-align: center;
+  padding: 0;
+  font-size: 6px;
+  text-transform: uppercase;
+  line-height: 76px;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.control button img {
+  width: auto;
+  height: auto;
+  max-width: 26px;
+  max-height: 26px;
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  margin-left: -13px;
+}
+
+
+.row {
+  display: block;
+  margin: 0 0 10px;
+  overflow: hidden;
+  width: 100%;
+}
+
+[class^="box"] {
+  border-radius: 5px;
+  padding: 10px;
+  float: left;
+  display: block;
+  box-sizing: content;
+}
+
+.box-1 { 
+  width: calc(100% - 20px);
+}
+.box-2 { 
+  width: calc(50% - 20px);
+}
+.box-3 { 
+  width: calc(33.33333333% - 20px);
+}
+.box-4 { 
+  width: calc(25% - 20px);
+}
+.box-5 { 
+  width: calc(20% - 20px);
+}
+.box-6 { 
+  width: calc(16.666666666% - 20px);
+}
+
+.loading {
+  display: block;
+  margin: -15px 0 0 -15px;
+  width: 10px;
+  height: 10px;
+  border: 10px ridge #2196F3;
+  border-color: #2196F3 #4ebb66;
+  border-radius: 30px;
+  -webkit-animation: spin 4s linear infinite;
+  -moz-animation: spin 4s linear infinite;
+  animation: spin 4s linear infinite;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+
+
+
+/* Page */
+.page {
+  background: grey;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 100%;
+  z-index: 101;
+}
+
+.button-close {
+  position: absolute;
+  right: 6px;
+  top: 5px;
+  font-size: 22px;
+  font-family: monospace;
+  padding: 5px 6px;
+}

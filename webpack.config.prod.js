@@ -3,18 +3,12 @@ var webpackMerge = require('webpack-merge');
 var DefinePlugin = require('webpack/lib/DefinePlugin');
 var commonConfig = require('./webpack.config.common.js');
 
+var host = 'https://wtd.herokuapp.com';
+
 module.exports = webpackMerge.smart(commonConfig, {
   entry: {
-    'app': './assets/app/main.aot.ts'
+    'app': './src/main.aot.ts'
   },
-
-  output: {
-    path: './public/js/app',
-    filename: 'bundle.js',
-    publicPath: '/js/app/',
-    chunkFilename: '[id].[hash].chunk.js'
-  },
-
   module: {
     loaders: [
       {
@@ -34,7 +28,8 @@ module.exports = webpackMerge.smart(commonConfig, {
       sourceMap: false
     }),
     new DefinePlugin({
-      'API': JSON.stringify('https://wtd.herokuapp.com/api/'),
+      'API': JSON.stringify(host + '/api/'),
+      'HOST': JSON.stringify(host),
       'process.env.NODE_ENV': JSON.stringify('production')
     })
   ]
