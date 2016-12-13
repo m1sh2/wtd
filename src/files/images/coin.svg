@@ -17,9 +17,9 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="coin.svg"
-   inkscape:export-filename="/Users/mike/Documents/my/wtd/src/coin.png"
-   inkscape:export-xdpi="6.75"
-   inkscape:export-ydpi="6.75">
+   inkscape:export-filename="/Users/mike/Documents/my/wtd/src/files/images/coin-2.png"
+   inkscape:export-xdpi="13.5"
+   inkscape:export-ydpi="13.5">
   <defs
      id="defs4">
     <linearGradient
@@ -295,7 +295,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="2021.8978"
+     inkscape:cx="1701.6794"
      inkscape:cy="79.593898"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -329,7 +329,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

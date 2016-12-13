@@ -49,6 +49,15 @@ export class Game {
     // this.start();
     let game = new GamePhaser();
     game.start();
+
+    setTimeout(() => {
+      log.i('ngOnInit', $('#gameplay canvas').length, window.devicePixelRatio);
+      // let canvas: any = $('#gameplay canvas')[0];
+      // canvas.width *= window.devicePixelRatio;
+      // canvas.height *= window.devicePixelRatio;
+      // canvas.getContext('2d').scale(window.devicePixelRatio, window.devicePixelRatio);
+    }, 1000);
+    
   }
 
   openWeapons() {

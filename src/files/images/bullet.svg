@@ -16,9 +16,9 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="bullet.svg"
-   inkscape:export-filename="/Users/mike/Documents/my/wtd/src/bullet.png"
-   inkscape:export-xdpi="3"
-   inkscape:export-ydpi="3">
+   inkscape:export-filename="/Users/mike/Documents/my/wtd/src/files/images/bullet-2.png"
+   inkscape:export-xdpi="6.1875124"
+   inkscape:export-ydpi="6.1875124">
   <defs
      id="defs5031" />
   <sodipodi:namedview
@@ -52,7 +52,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

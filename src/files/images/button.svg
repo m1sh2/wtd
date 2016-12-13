@@ -18,9 +18,9 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="button.svg"
-   inkscape:export-filename="/Users/mike/Documents/my/wtd/src/button.png"
-   inkscape:export-xdpi="9"
-   inkscape:export-ydpi="9">
+   inkscape:export-filename="/Users/mike/Documents/my/wtd/src/files/images/button-2.png"
+   inkscape:export-xdpi="18"
+   inkscape:export-ydpi="18">
   <defs
      id="defs4">
     <pattern
@@ -223,7 +223,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="445.54247"
+     inkscape:cx="-7.3146729"
      inkscape:cy="255.92455"
      inkscape:document-units="px"
      inkscape:current-layer="layer5"
@@ -254,7 +254,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -293,7 +293,8 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="text"
-     sodipodi:insensitive="true">
+     sodipodi:insensitive="true"
+     style="display:none">
     <g
        inkscape:groupmode="layer"
        id="layer4"

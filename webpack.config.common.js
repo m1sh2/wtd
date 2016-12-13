@@ -41,7 +41,7 @@ module.exports = {
       //   loader: 'file-loader?name=[name].[ext]&publicPath=dist/images&outputPath=dist/images/'
       // }
       {
-        test: /\.(png|jpe?g|gif|svg|cur)$/,
+        test: /\.(png|jpe?g|gif|cur)$/,
         // loader: 'file?name=/assets/images/[name].[ext]',
         loader: 'file-loader?name=[name].[ext]&publicPath=dist/images&outputPath=dist/images/',
         include: './src/files/images'
@@ -65,6 +65,11 @@ module.exports = {
       {
         from: './src/files/images/*.png',
         to: output + '/images',
+        flatten: true
+      },
+      {
+        from: './src/files/audio/*.*',
+        to: output + '/audio',
         flatten: true
       },
       {
