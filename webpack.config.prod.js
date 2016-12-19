@@ -2,8 +2,15 @@ var webpack = require('webpack');
 var webpackMerge = require('webpack-merge');
 var DefinePlugin = require('webpack/lib/DefinePlugin');
 var commonConfig = require('./webpack.config.common.js');
+var fs = require('fs');
 
 var host = 'https://wtd.herokuapp.com';
+
+var packageJson = require('./package.json');
+var version = packageJson.version.split('.').map(Number);
+version[2]++;
+packageJson.version = version.join('.');
+fs.writeFile('./package.json', JSON.stringify(packageJson, null, 2));
 
 module.exports = webpackMerge.smart(commonConfig, {
   entry: {

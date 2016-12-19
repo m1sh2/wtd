@@ -1,13 +1,13 @@
 {
   "name": "wtd",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "private": true,
   "scripts": {
     "start": "npm run server:prod",
     "watch": "concurrently \"npm run server:dev\" \"npm run build:dev\"",
-    "watch:dev": "webpack --config webpack.config.dev.js --progress --profile --watch",
+    "watch:dev": "npm run build:dev -- --watch",
     "prebuild:dev": "npm run clean",
-    "build:dev": "webpack --config webpack.config.dev.js --progress --profile",
+    "build:dev": "webpack --config webpack.config.dev.js --progress --profile --display-cached",
     "prebuild:prod": "npm run clean",
     "build:prod": "ngc -p tsconfig.aot.json && ngc -p tsconfig.aot.json && webpack --config webpack.config.prod.js --progress --profile --bail && del-cli 'public/js/app/**/*.js' 'public/js/app/**/*.js.map' '!public/js/app/bundle.js' '!public/js/app/*.chunk.js' 'assets/app/**/*.ngfactory.ts' 'assets/app/**/*.shim.ts'",
     "server:dev": "PORT=8000 NODE_ENV=development node ./bin/www",

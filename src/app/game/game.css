@@ -643,10 +643,35 @@ button.village-wall-switch .cost {
   cursor: pointer;
 }
 
+#gameplay {
+  display: block;
+}
 
+#gameplay canvas {
+  width: 2000px !important;
+  height: 2000px !important;
+}
 
+#gamedebug {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 100px;
+  word-wrap: break-word;
+  font-family: monospace;
+  font-size: 10px;
+  line-height: 12px;
+  color: white;
+  z-index: 2;
+}
 
-
+#buttons {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  width: 100%;
+  z-index: 1;
+}
 
 
 

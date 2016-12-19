@@ -9,9 +9,9 @@
   },
   "exclude": [
     "node_modules",
-    "public/js"
+    "dist/js"
   ],
   "filesGlob": [
-    "./assets/app/custom-typings.d.ts"
+    "./src/app/custom-typings.d.ts"
   ]
 }

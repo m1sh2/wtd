@@ -8,15 +8,15 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": false,
-    "outDir": "./public/js/app"
+    "outDir": "./dist/js"
   },
   "exclude": [
     "node_modules",
     "dist",
-    "assets/app/polyfills.ts"
+    "src/app/polyfills.ts"
   ],
   "filesGlob": [
-    "./assets/app/custom-typings.d.ts"
+    "./src/app/custom-typings.d.ts"
   ],
 
   "angularCompilerOptions": {
