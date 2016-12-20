@@ -652,6 +652,26 @@ button.village-wall-switch .cost {
   height: 2000px !important;
 }
 
+#gameplay[zoom="4"] canvas {
+  width: 1500px !important;
+  height: 1500px !important;
+}
+
+#gameplay[zoom="3"] canvas {
+  width: 1000px !important;
+  height: 1000px !important;
+}
+
+#gameplay[zoom="2"] canvas {
+  width: 500px !important;
+  height: 500px !important;
+}
+
+#gameplay[zoom="1"] canvas {
+  width: 250px !important;
+  height: 250px !important;
+}
+
 #gamedebug {
   position: fixed;
   right: 20px;
