@@ -1,4 +1,5 @@
 import './polyfills';
+import './vendors';
 
 import { enableProdMode } from '@angular/core';
 import { Log } from 'ng2-logger/ng2-logger';
