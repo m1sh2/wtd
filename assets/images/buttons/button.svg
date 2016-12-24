@@ -18,9 +18,9 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="button.svg"
-   inkscape:export-filename="/Users/mike/Documents/my/wtd/src/files/images/button-2.png"
-   inkscape:export-xdpi="18"
-   inkscape:export-ydpi="18">
+   inkscape:export-filename="/Users/mike/Documents/my/wtd/assets/images/buttons/button.png"
+   inkscape:export-xdpi="36"
+   inkscape:export-ydpi="36">
   <defs
      id="defs4">
     <pattern
@@ -222,9 +222,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="-7.3146729"
-     inkscape:cy="255.92455"
+     inkscape:zoom="0.7"
+     inkscape:cx="689.1139"
+     inkscape:cy="198.7817"
      inkscape:document-units="px"
      inkscape:current-layer="layer5"
      showgrid="true"
@@ -234,9 +234,9 @@
      inkscape:snap-bbox-midpoints="true"
      inkscape:snap-global="true"
      inkscape:window-width="1280"
-     inkscape:window-height="751"
+     inkscape:window-height="752"
      inkscape:window-x="0"
-     inkscape:window-y="1"
+     inkscape:window-y="0"
      inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
@@ -262,7 +262,7 @@
      inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="bottom"
-     style="display:inline">
+     style="display:inline;opacity:1">
     <rect
        style="opacity:1;fill:#00567f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect6317"
@@ -318,8 +318,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-732.36216)"
-     style="display:inline"
-     sodipodi:insensitive="true">
+     style="display:inline;opacity:1">
     <rect
        style="opacity:1;fill:#ffffff;fill-opacity:0;stroke:#1a86bf;stroke-width:19.77314758;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4138"

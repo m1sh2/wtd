@@ -1,3 +1,4 @@
+
 export const centerGameObjects = (objects) => {
   objects.forEach(function (object) {
     object.anchor.setTo(0.5)
@@ -11,7 +12,7 @@ export const setResponsiveWidth = (sprite, percent, parent) => {
 }
 
 export const getWeaponsPositions = () => {
-  const widthAttack = 630 * this.ratio;
+  const widthAttack = 630 * scaleRatio;
   let distance8 = widthAttack / 9;
   let positions = [];
   // positions.push({
@@ -42,6 +43,10 @@ export const getWeaponsPositions = () => {
   return positions;
 }
 
-const defaultScaleRatio = 4;
+const maxScaleRatio = 4;
 export const scaleRatio = window.devicePixelRatio; // window.devicePixelRatio
-export const scaleRatioSprite = scaleRatio / 4;
+export const scaleRatioSprite = scaleRatio / maxScaleRatio;
+
+export const widthView = document.documentElement.clientWidth;
+export const heightView = document.documentElement.clientHeight;
+

@@ -1,18 +1,17 @@
 /* globals __DEV__ */
 import Phaser from 'phaser';
-import Mushroom from '../sprites/Mushroom';
-import {
-  setResponsiveWidth,
-  getWeaponsPositions,
-  scaleRatioSprite,
-  scaleRatio
-} from '../utils';
+// import Mushroom from '../sprites/Mushroom';
+import { scaleRatio, scaleRatioSprite, widthView, heightView } from '../utils';
+
+let clickArr = [];
 
 export default class extends Phaser.State {
   init () {}
   preload () {}
 
   create () {
+    let self = this;
+
     let banner = this.add.text(
       20 * scaleRatio,
       this.game.height - 100 * scaleRatio,
@@ -25,10 +24,11 @@ export default class extends Phaser.State {
     banner.wordWrap = true;
     banner.wordWrapWidth = this.game.width - 40 * scaleRatio;
     // banner.scale.setTo(scaleRatioSprite, scaleRatioSprite);
-    
+
     let userStatsLayer = this.game.add.group();
     let enemiesLayer = this.game.add.group();
     let defenseLayer = this.game.add.group();
+    let buttonsLayer = this.game.add.group();
     let popupLayer = this.game.add.group();
 
     
@@ -47,16 +47,16 @@ export default class extends Phaser.State {
     userMoney.fill = '#fff';
     userMoney.anchor.setTo(0, 0.5);
     userMoney.inputEnabled = true;
-    userMoney.input.enableDrag();
-    userMoney.events.onDragStart.add(function() {
+    // userMoney.input.enableDrag();
+    // userMoney.events.onDragStart.add(function() {
 
-    }, this);
-    userMoney.events.onDragStop.add(function() {
+    // }, this);
+    // userMoney.events.onDragStop.add(function() {
       
-    }, this);
-    userMoney.events.onDragUpdate.add(function() {
+    // }, this);
+    // userMoney.events.onDragUpdate.add(function() {
       
-    }, this);
+    // }, this);
     userStatsLayer.add(userMoney);
 
     let wall = defenseLayer.create(this.game.width / 2, this.game.height - 40 * scaleRatio, 'wall');
@@ -86,9 +86,90 @@ export default class extends Phaser.State {
     
 
 
+    
+
+    // let button = this.game.add.button(
+    //   100,
+    //   20,
+    //   'button',
+    //   () => {
+    //     console.log('click');
+    //   },
+    //   this,
+    //   2,
+    //   1,
+    //   0
+    // );
+    // button.enableBody = true;
+    // button.anchor.set(0.5);
+
+
+
+    // let btn = document.create('button');
+    
+
+    let qwe = 0;
+    let x = this.game.width - 120 * scaleRatio;
+    let y = 10 * scaleRatio;
+    let btnPause = this.addButton('Pause', x, y,
+      () => {
+        console.log('pause');
+        qwe++;
+        if (!this.game.paused) {
+          this.game.paused = true;
+          
+          // btnPause.button.visible = false;
+          // btnPause.label.visible = false;
+          
+          // btnPlay.button.visible = true;
+          // btnPlay.label.visible = true;
+        }
+        // this.state.restart('Game');
+      });
+    // this.game.paused = true;
+    // btnPause.button.visible = false;
+    // btnPause.label.visible = false;
+    
+    x = x - 120 * scaleRatio;
+    let btnPlay = this.addButton('Play', x, y,
+      () => {
+        console.log('play');
+        qwe++;
+        if (this.game.paused) {
+          this.game.paused = false;
+          
+          // btnPause.button.visible = true;
+          // btnPause.label.visible = true;
+          
+          // btnPlay.button.visible = false;
+          // btnPlay.label.visible = false;
+        }
+      });
+    // this.game.paused = true;
+    // btnPlay.button.visible = false;
+    // btnPlay.label.visible = false;
+    
+    // buttonsLayer.add(btnPause);
+
+    this.game.input.onDown.add(pointer => {
+      if (pointer.id === 1) {
+        // console.log(this.game.input.x, this.game.input.y);
+        let x = this.game.input.x;
+        let y = this.game.input.y;
+        let clickArrFiltered = clickArr.filter(click => click.xMin <= x
+          && click.xMax >= x
+          && click.yMin <= y
+          && click.yMax >= y
+        );
+
+        if (clickArrFiltered[0].callback) {
+          clickArrFiltered[0].callback();
+        }
+      }
+    }, this);
+    
+
     // userStats.x = 100;
-
-
 
     // this.mushroom = new Mushroom({
     //   game: this.game,
@@ -101,13 +182,13 @@ export default class extends Phaser.State {
     // setResponsiveWidth(this.mushroom, 30, this.game.world)
     // this.game.add.existing(this.mushroom)
 
-    this.game.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
-    // game.scale.minWidth = 320;
-    // game.scale.minHeight = 240;
-    // game.scale.maxWidth = 1366 * ratio;
-    // game.scale.maxHeight = 768 * ratio;
-    this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
-    this.game.physics.startSystem(Phaser.Physics.ARCADE);
+    // this.game.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
+    // // game.scale.minWidth = 320;
+    // // game.scale.minHeight = 240;
+    // // game.scale.maxWidth = 1366 * ratio;
+    // // game.scale.maxHeight = 768 * ratio;
+    // this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
+    // this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
     // this.graphics = this.game.add.graphics(0, 0);
     // this.graphics.lineStyle(1, '#333', 1);
@@ -280,6 +361,51 @@ export default class extends Phaser.State {
   render () {
     if (__DEV__) {
       // this.game.debug.spriteInfo(this.mushroom, 32, 32)
+    }
+  }
+
+  addButton(labelText, x, y, callback) {
+    let btn = this.game.add.group();
+    let button = this.game.add.button(
+      x + 48 * scaleRatio,
+      y + 16 * scaleRatio,
+      'button',
+      null,
+      this,
+      2,
+      1,
+      0
+    );
+    button.enableBody = true;
+    button.anchor.set(0.5);
+    // buttonsLayer.add(button);
+
+    let label = this.game.add.text(
+      x + 48 * scaleRatio,
+      y + 16 * scaleRatio,
+      labelText,
+      {
+        font: 18 * scaleRatio + 'px "Text Me One"',
+        fill: '#ffffff',
+        align: 'center'
+      }
+    );
+    label.anchor.set(0.5);
+    // buttonsLayer.add(label);
+
+    // buttonsLayer.add(btn);
+
+    clickArr.push({
+      xMin: x / scaleRatio,
+      xMax: x / scaleRatio + 48 * scaleRatio,
+      yMin: y / scaleRatio,
+      yMax: y / scaleRatio + 16 * scaleRatio,
+      callback: callback
+    });
+
+    return {
+      button,
+      label
     }
   }
 }

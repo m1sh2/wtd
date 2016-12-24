@@ -1,8 +1,89 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
-"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="38.5mm" height="550mm" viewBox="-256.75 -25 38.5 550" xmlns="http://www.w3.org/2000/svg" version = "1.1">
-<title>wall.123dx</title>
-<desc> made with 123D Design </desc>
-<path d="M -225 5 L -225 0 L -249.75 0 L -250 0 L -250 495 L -250 500 L -225.25 500 L -225 500 z  M -220 190.292 L -220 190 L -254.708 190 L -255 190 L -255 224.708 L -255 225 L -220.292 225 L -220 225 z  M -220 275.292 L -220 275 L -254.708 275 L -255 275 L -255 309.708 L -255 310 L -220.292 310 L -220 310 z  " fill= "none" stroke="rgb(0,0,255)" stroke-width="0.05mm" />
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="38.5mm"
+   height="550mm"
+   viewBox="-256.75 -25 38.5 550"
+   version="1.1"
+   id="svg5082"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="wall.svg">
+  <metadata
+     id="metadata5094">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs5092" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1283"
+     inkscape:window-height="758"
+     id="namedview5090"
+     showgrid="false"
+     inkscape:zoom="0.48439596"
+     inkscape:cx="252.53993"
+     inkscape:cy="933.12091"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg5082" />
+  <title
+     id="title5084">wall.123dx</title>
+  <desc
+     id="desc5086"> made with 123D Design </desc>
+  <path
+     d="M -225 5 L -225 0 L -249.75 0 L -250 0 L -250 495 L -250 500 L -225.25 500 L -225 500 z  M -220 190.292 L -220 190 L -254.708 190 L -255 190 L -255 224.708 L -255 225 L -220.292 225 L -220 225 z  M -220 275.292 L -220 275 L -254.708 275 L -255 275 L -255 309.708 L -255 310 L -220.292 310 L -220 310 z  "
+     fill="none"
+     stroke="rgb(0,0,255)"
+     stroke-width="0.05mm"
+     id="path5088" />
+  <path
+     style="opacity:1;fill:#00aad4;fill-opacity:0.50549454;fill-rule:nonzero;stroke:none;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     d="m 26.964363,424.66 0,-334.287378 42.333335,0 42.333332,0 0,334.287378 0,334.28737 -42.333332,0 -42.333335,0 0,-334.28737 z"
+     id="path5642"
+     inkscape:connector-curvature="0"
+     transform="matrix(0.28222224,0,0,0.28222222,-256.75,-25)" />
+  <path
+     style="opacity:1;fill:#00aad4;fill-opacity:0.50549454;fill-rule:nonzero;stroke:none;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     d="m 26.964363,1523.8669 0,-335.7471 42.333335,0 42.333332,0 0,335.7471 0,335.7472 -42.333332,0 -42.333335,0 0,-335.7472 z"
+     id="path5644"
+     inkscape:connector-curvature="0"
+     transform="matrix(0.28222224,0,0,0.28222222,-256.75,-25)" />
+  <path
+     style="opacity:1;fill:#00ccff;fill-opacity:0.50549454;fill-rule:nonzero;stroke:none;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     d="m 26.964363,824.63703 0,-59.85058 42.333335,0 42.333332,0 0,59.85058 0,59.85058 -42.333332,0 -42.333335,0 0,-59.85058 z"
+     id="path5646"
+     inkscape:connector-curvature="0"
+     transform="matrix(0.28222224,0,0,0.28222222,-256.75,-25)" />
+  <path
+     style="opacity:1;fill:#00aad4;fill-opacity:0.50549454;fill-rule:nonzero;stroke:none;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     d="m 26.964363,974.99336 0,-87.58621 42.333335,0 42.333332,0 0,87.58621 0,87.58624 -42.333332,0 -42.333335,0 0,-87.58624 z"
+     id="path5648"
+     inkscape:connector-curvature="0"
+     transform="matrix(0.28222224,0,0,0.28222222,-256.75,-25)" />
+  <path
+     style="opacity:1;fill:#00ccff;fill-opacity:0.50549454;fill-rule:nonzero;stroke:none;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     d="m -254.67502,292.30738 0,-17.18249 17.0454,0 17.0454,0 0,17.18249 0,17.18248 -17.0454,0 -17.0454,0 0,-17.18248 z"
+     id="path5650"
+     inkscape:connector-curvature="0" />
 </svg>

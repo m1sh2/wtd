@@ -19,42 +19,24 @@ export default class extends Phaser.State {
     let text = this.add.text(this.world.centerX, this.world.centerY, 'loading fonts', { font: '16px Arial', fill: '#dddddd', align: 'center' });
     text.anchor.setTo(0.5, 0.5);
 
-    // this.load.image('loaderBg', './assets/images/loader-bg.png')
-    // this.load.image('loaderBar', './assets/images/loader-bar.png')
-
-    this.load.image('bullet', './assets/images/bullet.png');
-
-    this.load.spritesheet('enemy-bug', './assets/images/enemies/bug.png', 128, 128, 1);
-    this.load.spritesheet('w-base', './assets/images/weapon-base.png', 64, 64, 8);
-    this.load.spritesheet('w-gun', './assets/images/weapon-gun.png', 64, 64, 8);
-    this.load.spritesheet('coin', './assets/images/coin.png', 96, 96, 8);
-    this.load.spritesheet('wall', './assets/images/wall/wall.png', 997, 85, 1);
-    this.load.spritesheet('button', './assets/images/button.png', 32, 96, 1);
-    this.load.spritesheet('menu-top', './assets/images/menu-top.png', 16, 32, 1);
-    this.load.audio('sfx', './assets/audio/shot.wav');
-
-    this.game.stage.backgroundColor = '#333333';
-
-    this.load.onLoadStart.add(() => {
-      console.log('start load');
-    }, this);
-    this.load.onFileComplete.add(() => {
-      console.log('source loaded');
-    }, this);
-    this.load.onLoadComplete.add(() => {
-      console.log('loaded');
-      this.game.stage.backgroundColor = '#8BC34A';
-    }, this);
+    this.load.image('loaderBg', './assets/images/loader-bg.png');
+    this.load.image('loaderBar', './assets/images/loader-bar.png');
   }
 
   render () {
     if (this.fontsReady) {
-      this.state.start('Splash')
+      this.state.start('Splash');
     }
   }
 
+  create() {
+    this.game.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
+    this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
+    this.game.physics.startSystem(Phaser.Physics.ARCADE);
+  }
+
   fontsLoaded () {
-    this.fontsReady = true
+    this.fontsReady = true;
   }
 
 }
