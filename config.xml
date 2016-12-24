@@ -8,13 +8,11 @@
 <!-- versionCode is optional and Android only -->
 
   <name>Walls To Defense</name>
-
+  <icon src="assets/images/logo-512.png" />
   <description>
       Mobile Arcade Tower Defense Game.
   </description>
-
   <author href="http://datsko.it" email="info@datsko.it">
       Datsko IT
   </author>
-
 </widget>
