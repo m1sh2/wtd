@@ -15,4 +15,6 @@
   <author href="http://datsko.it" email="info@datsko.it">
       Datsko IT
   </author>
+  <content src="index.html" />
+  <access origin="*" />
 </widget>
