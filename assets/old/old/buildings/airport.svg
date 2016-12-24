@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="276.17346"
+   height="159.44878"
+   viewBox="0 0 276.17346 159.44877"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="airport.svg"
+   inkscape:export-filename="/Users/mike/Documents/my/wtd/wtd-app/src/img/building-1.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="145.65236"
+     inkscape:cy="54.644606"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1233"
+     inkscape:window-height="755"
+     inkscape:window-x="47"
+     inkscape:window-y="1"
+     inkscape:window-maximized="1"
+     inkscape:snap-center="true"
+     inkscape:snap-object-midpoints="true"
+     fit-margin-left="0"
+     fit-margin-top="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:snap-intersection-paths="true"
+     inkscape:object-nodes="true"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-nodes="true">
+    <inkscape:grid
+       type="axonomgrid"
+       id="grid3336"
+       units="mm"
+       empspacing="5"
+       originx="15.34297"
+       originy="97.440897" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="ground"
+     transform="translate(0,-2e-5)">
+    <path
+       transform="translate(14.102813,-990.35431)"
+       style="opacity:1;fill:#aade87;fill-opacity:1;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 77.955006,990.35433 262.07064,1096.6535 170.01282,1149.8031 -14.102813,1043.5039 Z"
+       id="rect4155"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+  </g>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(14.102813,-990.35433)">
+    <path
+       style="opacity:1;fill:#cccccc;fill-opacity:1;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 93.297976,1094.8819 6.137188,-3.5433 0,10.6299 -6.137188,3.5433 z"
+       id="rect4162"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="opacity:1;fill:#ececec;fill-opacity:1;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 68.749224,1073.622 30.68594,17.7166 -6.137188,3.5433 -30.68594,-17.7165 z"
+       id="path4207"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 62.612036,1077.1654 30.68594,17.7165 0,10.6299 -30.68594,-17.7165 z"
+       id="path10044"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="path10046"
+       d="m 77.955006,1008.0709 153.429694,88.5826 -9.20578,5.315 -153.429696,-88.5827 z"
+       style="opacity:1;fill:#999999;fill-opacity:1;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none" />
+  </g>
+</svg>
