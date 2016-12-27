@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
 import WebFont from 'webfontloader'
 
-export default class extends Phaser.State {
+export default class BootState extends Phaser.State {
   init () {
     this.stage.backgroundColor = '#EDEEC9'
     this.fontsReady = false
@@ -21,6 +21,9 @@ export default class extends Phaser.State {
 
     this.load.image('loaderBg', require('../../assets/images/loader-bg.png'));
     this.load.image('loaderBar', require('../../assets/images/loader-bar.png'));
+
+    this.load.image('splash-bg', require('../../assets/images/splash-bg.png'));
+    this.load.spritesheet('splash-logo', require('../../assets/images/splash-logo.png'), 909, 512);
   }
 
   render () {

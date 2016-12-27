@@ -1,15 +1,24 @@
 import Phaser from 'phaser';
-import { centerGameObjects } from '../utils';
+import { setCenter, getRatio } from '../utils/';
 
-export default class extends Phaser.State {
+export default class SplashState extends Phaser.State {
   init () {}
 
   preload () {
-    this.loaderBg = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loaderBg');
-    this.loaderBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loaderBar');
-    centerGameObjects([this.loaderBg, this.loaderBar]);
+    this.splashBg = this.add.sprite(0, 0, 'splash-bg');
+    this.splashLogo = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'splash-logo');
+    this.loaderBg = this.add.sprite(this.game.world.centerX, this.game.height - 30 * getRatio.ratio, 'loaderBg');
+    this.loaderBar = this.add.sprite(this.game.world.centerX, this.game.height - 30 * getRatio.ratio, 'loaderBar');
 
+    setCenter([this.loaderBg, this.loaderBar, this.splashLogo]);
+
+    this.splashBg.x = 0;
+    this.splashBg.y = 0;
+    this.splashBg.width = this.game.width;
+    this.splashBg.height = this.game.height;
     this.load.setPreloadSprite(this.loaderBar);
+
+    
     
     // Loading all assets
     // this.load.image('bullet', require('../../assets/images/weapons/bullet.png'));
@@ -19,6 +28,7 @@ export default class extends Phaser.State {
     this.load.spritesheet('coin', require('../../assets/images/coin.png'), 96, 96, 8);
     this.load.spritesheet('wall', require('../../assets/images/wall/wall.png'), 997, 85, 1);
     this.load.spritesheet('button', require('../../assets/images/buttons/button.png'), 192, 64, 1);
+    this.load.spritesheet('button-home', require('../../assets/images/buttons/button-home.png'), 192, 128, 1);
     // this.load.spritesheet('menu-top', require('../../assets/images/menu-top.png'), 16, 32, 1);
     // this.load.audio('sfx', require('../../assets/audio/shot.wav'));
 
@@ -37,7 +47,10 @@ export default class extends Phaser.State {
   }
 
   create () {
-    this.state.start('Game');
+    
+    setTimeout(() => {
+      this.state.start('Home');
+    }, 1000);
   }
 
 }

@@ -1,11 +1,11 @@
 /* globals __DEV__ */
 import Phaser from 'phaser';
 // import Mushroom from '../sprites/Mushroom';
-import { scaleRatio, scaleRatioSprite, widthView, heightView } from '../utils';
+import { getRatio, getView } from '../utils/';
 
 let clickArr = [];
 
-export default class extends Phaser.State {
+export default class GameplayState extends Phaser.State {
   init () {}
   preload () {}
 
@@ -13,37 +13,37 @@ export default class extends Phaser.State {
     let self = this;
 
     let banner = this.add.text(
-      20 * scaleRatio,
-      this.game.height - 100 * scaleRatio,
+      20 * getRatio.ratio,
+      this.game.height - 100 * getRatio.ratio,
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.'
     );
     banner.font = 'Text Me One';
-    banner.fontSize = 16 * scaleRatio;
+    banner.fontSize = 16 * getRatio.ratio;
     banner.fill = '#fff';
     banner.anchor.setTo(0);
     banner.wordWrap = true;
-    banner.wordWrapWidth = this.game.width - 40 * scaleRatio;
-    // banner.scale.setTo(scaleRatioSprite, scaleRatioSprite);
+    banner.wordWrapWidth = this.game.width - 40 * getRatio.ratio;
+    // banner.scale.setTo(getRatio.sprite, getRatio.sprite);
 
-    let userStatsLayer = this.game.add.group();
-    let enemiesLayer = this.game.add.group();
-    let defenseLayer = this.game.add.group();
-    let buttonsLayer = this.game.add.group();
-    let popupLayer = this.game.add.group();
+    this.userStatsLayer = this.game.add.group();
+    this.enemiesLayer = this.game.add.group();
+    this.defenseLayer = this.game.add.group();
+    this.buttonsLayer = this.game.add.group();
+    this.popupLayer = this.game.add.group();
 
     
-    let coins = userStatsLayer.create(20 * scaleRatio, 20 * scaleRatio, 'coin');
+    let coins = this.userStatsLayer.create(20 * getRatio.ratio, 20 * getRatio.ratio, 'coin');
     coins.enableBody = true;
     coins.name = 'coins';
     coins.anchor.setTo(0.5, 0.5);
-    coins.scale.setTo(scaleRatioSprite, scaleRatioSprite);
+    coins.scale.setTo(getRatio.sprite, getRatio.sprite);
     coins.animations.add('rolling', [0, 1, 2, 3, 5, 6, 7], 15, true);
     coins.frame = 7;
     // coins.animations.play('rolling');
 
-    let userMoney = this.add.text(40 * scaleRatio, 20 * scaleRatio, '43 245 879 Scale: ' + scaleRatio + ' Game: ' + this.game.width + ' Window: ' + document.documentElement.clientWidth);
+    let userMoney = this.add.text(40 * getRatio.ratio, 20 * getRatio.ratio, '43 245 879 Scale: ' + getRatio.ratio + ' Game: ' + this.game.width + ' Window: ' + document.documentElement.clientWidth);
     userMoney.font = 'Changa';
-    userMoney.fontSize = 20 * scaleRatio;
+    userMoney.fontSize = 20 * getRatio.ratio;
     userMoney.fill = '#fff';
     userMoney.anchor.setTo(0, 0.5);
     userMoney.inputEnabled = true;
@@ -57,25 +57,25 @@ export default class extends Phaser.State {
     // userMoney.events.onDragUpdate.add(function() {
       
     // }, this);
-    userStatsLayer.add(userMoney);
+    this.userStatsLayer.add(userMoney);
 
-    let wall = defenseLayer.create(this.game.width / 2, this.game.height - 40 * scaleRatio, 'wall');
+    let wall = this.defenseLayer.create(this.game.width / 2, this.game.height - 40 * getRatio.ratio, 'wall');
     wall.enableBody = true;
     wall.name = 'wall';
     wall.anchor.setTo(0.5, 0.5);
-    wall.scale.setTo(scaleRatioSprite, scaleRatioSprite);
+    wall.scale.setTo(getRatio.sprite, getRatio.sprite);
     // wall.animations.add('rolling', [0, 1, 2, 3, 5, 6, 7], 15, true);
     wall.frame = 0;
     wall.physicsBodyType = Phaser.Physics.ARCADE;
     this.game.physics.arcade.enable(wall);
 
     for (let i = 0; i < 100; i ++) {
-      let enemy = enemiesLayer.create(this.game.width / 100 * (i + 1), 20 * scaleRatio, 'enemy-bug');
+      let enemy = this.enemiesLayer.create(this.game.width / 100 * (i + 1), 20 * getRatio.ratio, 'enemy-bug');
       enemy.enableBody = true;
       enemy.name = 'enemy-bug';
       enemy.speed = 100;
       enemy.anchor.setTo(0.5, 0.5);
-      enemy.scale.setTo(scaleRatioSprite, scaleRatioSprite);
+      enemy.scale.setTo(getRatio.sprite, getRatio.sprite);
       enemy.physicsBodyType = Phaser.Physics.ARCADE;
       this.game.physics.arcade.enable(enemy);
       // enemy.animations.add('rolling', [0, 1, 2, 3, 5, 6, 7], 15, true);
@@ -83,73 +83,53 @@ export default class extends Phaser.State {
       // console.log(enemy, wall);
       this.game.physics.arcade.moveToObject(enemy, wall, enemy.speed);
     }
-    
 
+    let x = this.game.width - 100 * getRatio.ratio;
+    let y = 10 * getRatio.ratio;
+    let btnPause = this.addButton('Pause', x, y, () => {
+      console.log('pause');
 
-    
-
-    // let button = this.game.add.button(
-    //   100,
-    //   20,
-    //   'button',
-    //   () => {
-    //     console.log('click');
-    //   },
-    //   this,
-    //   2,
-    //   1,
-    //   0
-    // );
-    // button.enableBody = true;
-    // button.anchor.set(0.5);
-
-
-
-    // let btn = document.create('button');
-    
-
-    let qwe = 0;
-    let x = this.game.width - 120 * scaleRatio;
-    let y = 10 * scaleRatio;
-    let btnPause = this.addButton('Pause', x, y,
-      () => {
-        console.log('pause');
-        qwe++;
-        if (!this.game.paused) {
-          this.game.paused = true;
-          
-          // btnPause.button.visible = false;
-          // btnPause.label.visible = false;
-          
-          // btnPlay.button.visible = true;
-          // btnPlay.label.visible = true;
-        }
-        // this.state.restart('Game');
+      this.enemiesLayer.children.forEach(enemy => {
+        enemy.body.enable = false;
       });
-    this.game.paused = true;
-    // btnPause.button.visible = false;
-    // btnPause.label.visible = false;
-    
-    x = x - 120 * scaleRatio;
-    let btnPlay = this.addButton('Play', x, y,
-      () => {
-        console.log('play');
-        qwe++;
-        if (this.game.paused) {
-          this.game.paused = false;
-          
-          // btnPause.button.visible = true;
-          // btnPause.label.visible = true;
-          
-          // btnPlay.button.visible = false;
-          // btnPlay.label.visible = false;
-        }
-      });
+
+      // if (!this.game.paused) {
+      //   this.game.paused = true;
+        
+      //   // btnPause.button.visible = false;
+      //   // btnPause.label.visible = false;
+        
+      //   // btnPlay.button.visible = true;
+      //   // btnPlay.label.visible = true;
+      // }
+      // this.state.restart('Game');
+    });
     // this.game.paused = true;
-    // btnPlay.button.visible = false;
-    // btnPlay.label.visible = false;
     
-    // buttonsLayer.add(btnPause);
+    x = x - 100 * getRatio.ratio;
+    let btnPlay = this.addButton('Play', x, y, () => {
+      console.log('play');
+
+      this.enemiesLayer.children.forEach(enemy => {
+        enemy.body.enable = true;
+      });
+
+      if (this.game.paused) {
+        this.game.paused = false;
+        
+        // btnPause.button.visible = true;
+        // btnPause.label.visible = true;
+        
+        // btnPlay.button.visible = false;
+        // btnPlay.label.visible = false;
+      }
+    });
+    
+    x = x - 100 * getRatio.ratio;
+    let btnHome = this.addButton('Home', x, y, () => {
+      console.log('home');
+      this.state.start('Home', true, false);
+    });
 
     this.game.input.onDown.add(pointer => {
       if (pointer.id === 1) {
@@ -206,9 +186,9 @@ export default class extends Phaser.State {
 
     // this.wall = this.game.add.tileSprite(
     //   0,
-    //   this.game.world.height - 392 * scaleRatio,
+    //   this.game.world.height - 392 * getRatio.ratio,
     //   this.game.world.width,
-    //   192 * scaleRatio,
+    //   192 * getRatio.ratio,
     //   'wall'
     // );
     // this.game.physics.arcade.enable(this.wall);
@@ -254,7 +234,7 @@ export default class extends Phaser.State {
     //   }
 
     //   let x = position.x;
-    //   let y = 400 * scaleRatio + position.y;
+    //   let y = 400 * getRatio.ratio + position.y;
 
     //   let base = weapon.create(x, y, 'w-base');
     //   base.enableBody = true;
@@ -276,7 +256,7 @@ export default class extends Phaser.State {
     //   w.visible = false;
     //   w.frame = 0;
     //   w.timer = 0;
-    //   w.range = 250 * scaleRatio;
+    //   w.range = 250 * getRatio.ratio;
     //   w.anchor.setTo(0.5, 0.5);
     //   w.animations.add('open', [0, 1, 2, 3], 15, false);
     //   w.animations.add('close', [3, 2, 1, 0], 15, false);
@@ -287,7 +267,7 @@ export default class extends Phaser.State {
     //   // graphics.lineStyle(2, 0xffd900, 1);
 
     //   this.graphics.beginFill('#f00', 0.2);
-    //   this.graphics.drawCircle(x, y, 500 * scaleRatio);
+    //   this.graphics.drawCircle(x, y, 500 * getRatio.ratio);
     //   this.graphics.endFill();
 
     //   this.weaponsArr.push(w);
@@ -295,9 +275,9 @@ export default class extends Phaser.State {
     //   this.weaponsRanges.push({
     //     x: x,
     //     y: y,
-    //     range: 250 * scaleRatio,
-    //     width: 64 * scaleRatio,
-    //     height: 64 * scaleRatio
+    //     range: 250 * getRatio.ratio,
+    //     width: 64 * getRatio.ratio,
+    //     height: 64 * getRatio.ratio
     //   });
 
     //   // let circle = new Phaser.Circle(x, y, 64);
@@ -314,10 +294,10 @@ export default class extends Phaser.State {
     // this.enemies.enableBody = true;
     // // enemies.inputEnabled = true;
     // // enemies.input.enableDrag(true);
-    // let enemiesLength = this.game.world.width / (30 * scaleRatio);
+    // let enemiesLength = this.game.world.width / (30 * getRatio.ratio);
     // for (let i = 0; i < enemiesLength; i++) {
-    //   let ex = i * 30 * scaleRatio;
-    //   let ey = Math.random() * 100 * scaleRatio;
+    //   let ex = i * 30 * getRatio.ratio;
+    //   let ey = Math.random() * 100 * getRatio.ratio;
     //   let enemy = this.enemies.create(ex, ey, 'coin');
     //   let len = 100000000;
     //   let toWeapon;
@@ -367,8 +347,8 @@ export default class extends Phaser.State {
   addButton(labelText, x, y, callback) {
     let btn = this.game.add.group();
     let button = this.game.add.button(
-      x + 48 * scaleRatio,
-      y + 16 * scaleRatio,
+      x + 48 * getRatio.ratio,
+      y + 16 * getRatio.ratio,
       'button',
       null,
       this,
@@ -381,11 +361,11 @@ export default class extends Phaser.State {
     // buttonsLayer.add(button);
 
     let label = this.game.add.text(
-      x + 48 * scaleRatio,
-      y + 16 * scaleRatio,
+      x + 48 * getRatio.ratio,
+      y + 16 * getRatio.ratio,
       labelText,
       {
-        font: 18 * scaleRatio + 'px "Text Me One"',
+        font: 18 * getRatio.ratio + 'px "Text Me One"',
         fill: '#ffffff',
         align: 'center'
       }
@@ -396,10 +376,10 @@ export default class extends Phaser.State {
     // buttonsLayer.add(btn);
 
     clickArr.push({
-      xMin: x / scaleRatio,
-      xMax: x / scaleRatio + 48 * scaleRatio,
-      yMin: y / scaleRatio,
-      yMax: y / scaleRatio + 16 * scaleRatio,
+      xMin: x / getRatio.ratio,
+      xMax: x / getRatio.ratio + 48 * getRatio.ratio,
+      yMin: y / getRatio.ratio,
+      yMax: y / getRatio.ratio + 16 * getRatio.ratio,
       callback: callback
     });
 
