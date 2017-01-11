@@ -1,4 +1,4 @@
 export const getView = {
-  width: document.documentElement.clientWidth,
-  height: document.documentElement.clientHeight
+  w: document.documentElement.clientWidth,
+  h: document.documentElement.clientHeight
 }

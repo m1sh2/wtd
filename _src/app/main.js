@@ -2,25 +2,31 @@ import 'pixi';
 import 'p2';
 import Phaser from 'phaser';
 
-import BootState from './states/boot';
-import SplashState from './states/splash';
-import GameplayState from './states/gameplay';
-import HomeState from './states/home';
+import BootState from './states/boot/boot';
+import SplashState from './states/splash/splash';
+import BattleState from './states/battle/battle';
+import HomeState from './states/home/home';
+import SettingsState from './states/settings/settings';
+import LabState from './states/lab/lab';
+import MarketState from './states/market/market';
 
-import { getRatio } from './utils/';
+import { U } from './utils/';
 
 class Game extends Phaser.Game {
 
   constructor () {
-    let width = document.documentElement.clientWidth * getRatio.ratio;
-    let height = document.documentElement.clientHeight * getRatio.ratio;
+    let width = document.documentElement.clientWidth * U.ratio;
+    let height = document.documentElement.clientHeight * U.ratio;
 
     super(width, height, Phaser.CANVAS, 'content', null);
 
     this.state.add('Boot', BootState, false);
     this.state.add('Splash', SplashState, false);
-    this.state.add('Gameplay', GameplayState, false);
+    this.state.add('Battle', BattleState, false);
     this.state.add('Home', HomeState, false);
+    this.state.add('Settings', SettingsState, false);
+    this.state.add('Lab', LabState, false);
+    this.state.add('Market', MarketState, false);
 
     this.state.start('Boot');
   }

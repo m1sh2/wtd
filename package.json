@@ -1,6 +1,6 @@
 {
   "name": "walls-to-defense",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Mobile arcade tower defense game.",
   "author": "Datsko IT <info@datsko.it>",
   "main": "index.js",
@@ -37,6 +37,7 @@
     "webpack-merge": "^2.0.0"
   },
   "dependencies": {
+    "jquery": "^3.1.1",
     "phaser-ce": "^2.7.1"
   }
 }
