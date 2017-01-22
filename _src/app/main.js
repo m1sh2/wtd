@@ -9,6 +9,7 @@ import HomeState from './states/home/home';
 import SettingsState from './states/settings/settings';
 import LabState from './states/lab/lab';
 import MarketState from './states/market/market';
+import PlayState from './states/play/play';
 
 import { U } from './utils/';
 
@@ -27,6 +28,7 @@ class Game extends Phaser.Game {
     this.state.add('Settings', SettingsState, false);
     this.state.add('Lab', LabState, false);
     this.state.add('Market', MarketState, false);
+    this.state.add('Play', PlayState, false);
 
     this.state.start('Boot');
   }

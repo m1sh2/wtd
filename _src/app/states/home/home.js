@@ -6,13 +6,19 @@ let clickArr = [];
 export default class extends Phaser.State {
   init () {
     U.btns.clear();
-    U.title.clear();
-    U.map.clear();
+    U.title.remove();
+    U.map.remove();
   }
 
   preload () {}
 
   create () {
+    this.splashBg = this.add.sprite(0, 0, 'splash-bg');
+    this.splashBg.x = 0;
+    this.splashBg.y = 0;
+    this.splashBg.width = this.game.width;
+    this.splashBg.height = this.game.height;
+
     let x = this.game.world.centerX;
     let y = 20 * U.ratio;
     let w = this.game.world.width;
@@ -35,117 +41,68 @@ export default class extends Phaser.State {
     // map.scale.setTo(U.ratioS, U.ratioS);
     // map.frame = 0;
 
-    U.map.add({
-      items: [
-        {
-          x: 20,
-          y: 30,
-          click: () => {
-            this.state.start('Battle');
-          }
-        },
-        {
-          x: 50,
-          y: 100,
-          click: () => {
-            this.state.start('Battle');
-          }
-        },
-        {
-          x: 70,
-          y: 200,
-          click: () => {
-            this.state.start('Battle');
-          }
-        },
-        {
-          x: 60,
-          y: 300,
-          click: () => {
-            this.state.start('Battle');
-          }
-        },
-        {
-          x: 30,
-          y: 400,
-          click: () => {
-            this.state.start('Battle');
-          }
-        },
-        {
-          x: 50,
-          y: 500,
-          click: () => {
-            this.state.start('Battle');
-          }
-        },
-        {
-          x: 80,
-          y: 600,
-          click: () => {
-            this.state.start('Battle');
-          }
-        },
-        {
-          x: 70,
-          y: 700,
-          click: () => {
-            this.state.start('Battle');
-          }
-        },
-        {
-          x: 200,
-          y: 720,
-          click: () => {
-            this.state.start('Battle');
-          }
-        },
-      ],
-      wMap: 2400,
-      hMap: 800
-    });
-
     U.title.add({
-      title: 'Walls To Defense',
       click: () => {
         this.state.start('Home');
-      }
+      },
+      cls: 'title-home'
+    });
+
+    const menuLeft = U.view.w / 4 * 3 - 107;
+
+    U.btns.add({
+      x: menuLeft,
+      y: U.view.h / 2 - 125,
+      label: '<span class="icon-earth"></span> Play',
+      click: () => {
+        console.log('click');
+        this.state.start('Play');
+      },
+      cls: 'btn-home-menu'
     });
 
     U.btns.add({
-      x: U.view.w / 2 - 196,
-      y: U.view.h - 50,
-      w: 120,
-      h: 40,
-      label: 'Laboratory',
+      x: menuLeft,
+      y: U.view.h / 2 - 73,
+      label: '<span class="icon-lab"></span> Laboratory',
       click: () => {
         console.log('click');
         this.state.start('Lab');
-      }
+      },
+      cls: 'btn-home-menu'
     });
 
     U.btns.add({
-      x: U.view.w / 2 - 62,
-      y: U.view.h - 50,
-      w: 120,
-      h: 40,
-      label: 'Market',
+      x: menuLeft,
+      y: U.view.h / 2 - 21,
+      label: '<span class="icon-coin-dollar"></span> Market',
       click: () => {
         console.log('click');
         this.state.start('Market');
-      }
+      },
+      cls: 'btn-home-menu'
     });
 
     U.btns.add({
-      x: U.view.w / 2 + 72,
-      y: U.view.h - 50,
-      w: 120,
-      h: 40,
-      label: 'Settings',
+      x: menuLeft,
+      y: U.view.h / 2 + 31,
+      label: '<span class="icon-cog"></span> Settings',
       click: () => {
         console.log('click');
         this.state.start('Settings');
-      }
+      },
+      cls: 'btn-home-menu'
+    });
+
+    U.btns.add({
+      x: menuLeft,
+      y: U.view.h / 2 + 83,
+      label: '<span class="icon-exit"></span> Exit',
+      click: () => {
+        console.log('click');
+        navigator.app.exitApp();
+      },
+      cls: 'btn-home-menu'
     });
 
     // console.log(this.game);

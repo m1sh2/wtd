@@ -9,7 +9,8 @@ export const addButton = (options) => {
     h: 40,
     label: '',
     click: null,
-    cls: ''
+    cls: '',
+    hidden: false
   };
 
   for (let option in _options) {
@@ -37,6 +38,7 @@ export const addButton = (options) => {
 
   if (_options.type === 'back') {
     $button.addClass('btn-back');
+    $button.addClass('icon-arrow-right');
   }
   
   if (_options.label) {
@@ -47,5 +49,11 @@ export const addButton = (options) => {
     $button.click(_options.click);
   }
 
+  if (_options.hidden) {
+    $button.hide();
+  }
+
   $buttons.append($button);
+
+  return $button;
 }

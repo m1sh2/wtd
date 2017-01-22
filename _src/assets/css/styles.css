@@ -1,4 +1,6 @@
 
 @import './reset.css';
+@import './icons.css';
 @import './app.css';
 @import '../../app/states/home/home.css';
+@import '../../app/states/play/play.css';

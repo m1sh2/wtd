@@ -1,12 +1,13 @@
 {
   "name": "walls-to-defense",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "Mobile arcade tower defense game.",
   "author": "Datsko IT <info@datsko.it>",
   "main": "index.js",
   "scripts": {
     "start": "npm run watch:dev",
-    "clear": "del-cli www/js && del-cli www/images && del-cli www/css",
+    "clear": "del-cli www/js && del-cli www/images && del-cli www/*.css",
+    "prewatch:dev": "npm run clear",
     "watch:dev": "webpack --config ./_conf/webpack.dev.watch.js",
     "prebuild:dev": "npm run clear",
     "build:dev": "webpack --config ./_conf/webpack.dev.js",
@@ -32,6 +33,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "standard": "^8.6.0",
     "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webfontloader": "^1.6.27",
     "webpack": "^1.13.3",
     "webpack-merge": "^2.0.0"

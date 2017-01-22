@@ -32,6 +32,10 @@ const webpackConf = {
         include: path.join(__dirname, '../_src/assets/images')
       },
       {
+        test: /\.(woff|woff2|eot|ttf|svg)(\?.*)?$/,
+        loader: 'url-loader?limit=10000'
+      },
+      {
         test: /\.css$/,
         loader: extractTextPlugin.extract('style-loader', 'css-loader'),
         include: path.join(__dirname, '../_src/assets/css')
@@ -48,7 +52,7 @@ const webpackConf = {
     new webpack.DefinePlugin({
       __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
     }),
-    new extractTextPlugin('css/styles.bundle.css')
+    new extractTextPlugin('styles.bundle.css')
   ],
   node: {
     fs: 'empty',

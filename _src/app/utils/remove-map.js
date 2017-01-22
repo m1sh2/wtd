@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-export const clearMap = () => {
+export const removeMap = () => {
   let $map = $('#map');
   $map.remove();
 }

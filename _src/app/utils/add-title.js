@@ -12,5 +12,9 @@ export const addTitle = (options) => {
     title.html(options.title);
   }
 
+  if (options.cls) {
+    title.addClass(options.cls);
+  }
+
   $('#content').append(title);
 };

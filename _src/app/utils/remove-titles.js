@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-export const clearTitles = () => {
+export const removeTitles = () => {
   let $titles = $('.title');
   $titles.remove();
 }

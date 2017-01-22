@@ -8,23 +8,24 @@ let clickArr = [];
 export default class extends Phaser.State {
   init () {
     U.btns.clear();
-    U.title.clear();
+    U.map.remove();
+    U.title.remove();
   }
 
   preload () {}
 
   create () {
-    let banner = this.add.text(
-      20 * U.ratio,
-      this.game.height - 100 * U.ratio,
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.'
-    );
-    banner.font = 'Text Me One';
-    banner.fontSize = 16 * U.ratio;
-    banner.fill = '#fff';
-    banner.anchor.setTo(0);
-    banner.wordWrap = true;
-    banner.wordWrapWidth = this.game.width - 40 * U.ratio;
+    // let banner = this.add.text(
+    //   20 * U.ratio,
+    //   this.game.height - 100 * U.ratio,
+    //   'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.'
+    // );
+    // banner.font = 'Text Me One';
+    // banner.fontSize = 16 * U.ratio;
+    // banner.fill = '#fff';
+    // banner.anchor.setTo(0);
+    // banner.wordWrap = true;
+    // banner.wordWrapWidth = this.game.width - 40 * U.ratio;
     // banner.scale.setTo(U.ratioS, U.ratioS);
 
     this.userStatsLayer = this.game.add.group();
@@ -50,15 +51,28 @@ export default class extends Phaser.State {
     userMoney.inputEnabled = true;
     this.userStatsLayer.add(userMoney);
 
-    let wall = this.defenseLayer.create(this.game.width / 2, this.game.height - 40 * U.ratio, 'wall');
-    wall.enableBody = true;
-    wall.name = 'wall';
-    wall.anchor.setTo(0.5, 0.5);
-    wall.scale.setTo(U.ratioS, U.ratioS);
-    // wall.animations.add('rolling', [0, 1, 2, 3, 5, 6, 7], 15, true);
-    wall.frame = 0;
-    wall.physicsBodyType = Phaser.Physics.ARCADE;
-    this.game.physics.arcade.enable(wall);
+    let weapons = [];
+    const weaponsLength = 9;
+    for (let i = 0; i < weaponsLength; i ++) {
+      const x = this.game.width / weaponsLength * (i + 1) - this.game.width / weaponsLength / 2;
+      const y = this.game.height - 40 * U.ratio;
+      let weapon = this.defenseLayer.create(x, y, 'w1');
+      weapon.enableBody = true;
+      weapon.name = 'w1';
+      weapon.anchor.setTo(0.5, 0.5);
+      weapon.scale.setTo(U.ratioS, U.ratioS);
+      // weapon.animations.add('rolling', [0, 1, 2, 3, 5, 6, 7], 15, true);
+      weapon.frame = 3;
+      weapon.physicsBodyType = Phaser.Physics.ARCADE;
+      this.game.physics.arcade.enable(weapon);
+      weapon.body.immovable = true;
+
+      weapon.animations.add('fire', [3, 4, 5], 10, false);
+
+      weapons.push(weapon);
+
+
+    }
 
     for (let i = 0; i < 100; i ++) {
       let enemy = this.enemiesLayer.create(this.game.width / 100 * (i + 1), (20 + Math.round(Math.random() * 10)) * U.ratio, 'enemy-bug');
@@ -71,8 +85,22 @@ export default class extends Phaser.State {
       this.game.physics.arcade.enable(enemy);
       // enemy.animations.add('rolling', [0, 1, 2, 3, 5, 6, 7], 15, true);
       enemy.frame = 0;
-      // console.log(enemy, wall);
-      this.game.physics.arcade.moveToObject(enemy, wall, enemy.speed);
+      enemy.collideWorldBounds = true;
+      // console.log(enemy, weapon);
+
+      let weapon;
+      let distance = 100000000;
+      weapons.forEach(weapon_ => {
+        const distance_ = this.game.physics.arcade.distanceBetween(enemy, weapon_);
+        if (distance_ < distance) {
+          weapon = weapon_;
+          distance = distance_;
+        }
+      });
+
+      this.game.physics.arcade.moveToObject(enemy, weapon, enemy.speed);
+      enemy.rotation = this.game.physics.arcade.angleBetween(enemy, weapon) + U.getRadians(270);
+      weapon.rotation = this.game.physics.arcade.angleBetween(weapon, enemy) + U.getRadians(90);
     }
 
     this.enemiesLayer.children.forEach(enemy => {
@@ -82,34 +110,80 @@ export default class extends Phaser.State {
     let x = 10 * U.ratio;
     let y = 10 * U.ratio;
 
-    U.btns.add({
-      x: U.view.w / 2 - 62,
-      y: U.view.h - 50,
-      w: 120,
+    const btnPlay = U.btns.add({
+      x: U.view.w - 108,
+      y: 10,
+      w: 40,
       h: 40,
-      label: 'Play',
       click: () => {
         this.play();
-      }
+        btnPlay.hide();
+        btnPause.show();
+      },
+      cls: 'icon-play3'
     });
 
-    U.btns.add({
-      x: U.view.w / 2 + 62,
-      y: U.view.h - 50,
-      w: 120,
+    const btnPause = U.btns.add({
+      x: U.view.w - 108,
+      y: 10,
+      w: 40,
       h: 40,
-      label: 'Pause',
       click: () => {
         this.pause();
-      }
+        btnPlay.show();
+        btnPause.hide();
+      },
+      cls: 'icon-pause2',
+      hidden: true
     });
 
-    U.btns.add({
-      type: 'back',
+    const btnMenu = U.btns.add({
+      x: U.view.w - 54,
+      y: 10,
+      w: 40,
+      h: 40,
       click: () => {
-        this.state.start('Home');
-      }
+        this.pause();
+        btnPlay.show();
+        btnPause.hide();
+        U.menu.add({
+          items: [
+            {
+              label: '<span class="icon-loop2"></span> Restart',
+              click: () => {
+                this.state.start('Battle');
+              }
+            },
+            {
+              label: '<span class="icon-cog"></span> Settings',
+              click: () => {
+                this.state.start('Settings');
+              }
+            },
+            {
+              label: '<span class="icon-menu"></span> Main menu',
+              click: () => {
+                this.state.start('Home');
+              }
+            },
+            {
+              label: '<span class="icon-arrow-left"></span> Return',
+              click: () => {
+                U.menu.remove();
+              }
+            }
+          ]
+        });
+      },
+      cls: 'icon-menu'
     });
+
+    // U.btns.add({
+    //   type: 'back',
+    //   click: () => {
+    //     this.state.start('Home');
+    //   }
+    // });
 
     // let btnHome = this.addButton('Home', x, y, () => {
     //   this.state.start('Home', true, false);
@@ -148,6 +222,18 @@ export default class extends Phaser.State {
 
     // this.clickDetect();
     // console.log(this.game, btnPlay);
+  }
+
+  update() {
+    this.game.physics.arcade.collide(this.enemiesLayer, this.defenseLayer, (enemy, weapon) => {
+      // console.log('collide', enemy);
+      // enemy.speed = 0;
+      enemy.body.velocity.x = 0;
+      enemy.body.velocity.y = 0;
+      enemy.kill();
+
+      weapon.animations.play('fire');
+    });
   }
 
   render () {

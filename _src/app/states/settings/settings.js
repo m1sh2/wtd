@@ -6,13 +6,19 @@ let clickArr = [];
 export default class extends Phaser.State {
   init () {
     U.btns.clear();
-    U.title.clear();
-    U.map.clear();
+    U.title.remove();
+    U.map.remove();
   }
 
   preload () {}
 
   create () {
+    this.splashBg = this.add.sprite(0, 0, 'splash-bg');
+    this.splashBg.x = 0;
+    this.splashBg.y = 0;
+    this.splashBg.width = this.game.width;
+    this.splashBg.height = this.game.height;
+    
     let x = this.game.width - 74 * U.ratio;
     let y = 10 * U.ratio;
 

@@ -1,16 +1,23 @@
 import { addButton, clearButtons } from './buttons/';
-import { addMap } from './add-map';
-import { clearMap } from './clear-map';
-import { addTitle } from './add-title';
-import { clearTitles } from './clear-title';
 
-import { getMenu } from './get-menu';
+import { addMap } from './add-map';
+import { removeMap } from './remove-map';
+
+import { addTitle } from './add-title';
+import { removeTitles } from './remove-titles';
+
+import { addMenu } from './add-menu';
+import { removeMenu } from './remove-menu';
+
 import { getRatio } from './get-ratio';
 import { getView } from './get-view';
 import { getWeaponsPositions } from './get-weapons-positions';
+import { getRadians } from './get-radians';
 
 import { setCenter } from './set-center';
 import { setResponsiveWidth } from './set-responsive-width';
+
+import { hasChildren } from './has-children';
 
 export const U = {
   btns: {
@@ -20,20 +27,27 @@ export const U = {
 
   map: {
     add: addMap,
-    clear: clearMap
+    remove: removeMap
   },
 
   title: {
     add: addTitle,
-    clear: clearTitles
+    remove: removeTitles
   },
 
-  getMenu,
+  menu: {
+    add: addMenu,
+    remove: removeMenu
+  },
+
   ratio: getRatio.ratio,
   ratioS: getRatio.sprite,
   view: getView,
   getWeaponsPositions,
+  getRadians,
 
   setCenter,
-  setResponsiveWidth
+  setResponsiveWidth,
+
+  hasChild: hasChildren
 }
