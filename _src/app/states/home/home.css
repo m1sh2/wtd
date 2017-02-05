@@ -11,5 +11,5 @@
   height: 164px;
   left: calc(50% / 2 - 125px);
   margin: 0;
-  top: 30px;
+  top: calc(50% - 133px);
 }

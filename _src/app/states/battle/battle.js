@@ -1,9 +1,9 @@
-/* globals __DEV__ */
 import Phaser from 'phaser';
-// import Mushroom from '../sprites/Mushroom';
 import { U } from '../../utils/';
 
 let clickArr = [];
+let dronsObj = {};
+let sets = {};
 
 export default class extends Phaser.State {
   init () {
@@ -28,11 +28,29 @@ export default class extends Phaser.State {
     // banner.wordWrapWidth = this.game.width - 40 * U.ratio;
     // banner.scale.setTo(U.ratioS, U.ratioS);
 
-    this.userStatsLayer = this.game.add.group();
+    sets = U.mem.get('sets');
+    let user = sets.user;
+    let car = sets.cars[user.car];
+
+    const levelId = +U.mem.get('level');
+    const subLevelId = +U.mem.get('subLevel');
+
+    const level = sets.levels.filter(level_ => level_.id === levelId)[0];
+    const subLevel = level.subLevels.filter(subLevel_ => subLevel_.id === subLevelId)[0];
+
+    this.levelLayer = this.game.add.group();
     this.enemiesLayer = this.game.add.group();
     this.defenseLayer = this.game.add.group();
-    this.buttonsLayer = this.game.add.group();
-    this.popupLayer = this.game.add.group();
+    this.rangeLayer = this.game.add.group();
+    this.userStatsLayer = this.game.add.group();
+
+    let levelBg = this.levelLayer.create(this.game.width / 2, this.game.height / 2, 'level-1');
+    levelBg.enableBody = true;
+    levelBg.name = 'levelBg';
+    levelBg.anchor.setTo(0.5, 0.5);
+    levelBg.scale.setTo(U.ratioS, U.ratioS);
+    levelBg.animations.add('ride', [0, 1, 2, 3, 5, 6, 7], 30, true);
+    levelBg.frame = 0;
 
     let coins = this.userStatsLayer.create(20 * U.ratio, 20 * U.ratio, 'coin');
     coins.enableBody = true;
@@ -43,64 +61,147 @@ export default class extends Phaser.State {
     coins.frame = 7;
     // coins.animations.play('rolling');
 
-    let userMoney = this.add.text(40 * U.ratio, 20 * U.ratio, '43 245 879 Scale: ' + U.ratio + ' Game: ' + this.game.width + ' Window: ' + document.documentElement.clientWidth);
-    userMoney.font = 'Changa';
+    let userMoney = this.add.text(40 * U.ratio, 20 * U.ratio, user.money);
+    userMoney.font = 'Arial, Helvetica, sans-serif';
     userMoney.fontSize = 20 * U.ratio;
     userMoney.fill = '#fff';
     userMoney.anchor.setTo(0, 0.5);
     userMoney.inputEnabled = true;
     this.userStatsLayer.add(userMoney);
 
-    let weapons = [];
-    const weaponsLength = 9;
-    for (let i = 0; i < weaponsLength; i ++) {
-      const x = this.game.width / weaponsLength * (i + 1) - this.game.width / weaponsLength / 2;
+    x = car.width * U.ratio;
+    y = this.game.height / 2;
+
+    let drons = [];
+
+    let carModel = this.defenseLayer.create(x, y, 'car-1');
+    carModel.enableBody = true;
+    carModel.frame = 0;
+    carModel.name = 'car';
+    carModel.anchor.setTo(0.5, 0.5);
+    carModel.scale.setTo(U.ratioS, U.ratioS);
+    this.game.physics.arcade.enable(carModel);
+    carModel.body.immovable = true;
+    carModel.animations.add('open', [0, 1, 2, 3, 4, 5, 6], 30, false);
+    carModel.animations.add('close', [6, 5, 4, 3, 2, 1, 0], 30, false);
+
+    let carRange = this.rangeLayer.create(x, y, 'car-1-range');
+    carRange.enableBody = true;
+    carRange.frame = 0;
+    carRange.name = 'range';
+    carRange.dron = 'car-w1';
+    carRange.anchor.setTo(0.5, 0.5);
+    carRange.scale.setTo(U.ratioS, U.ratioS);
+    this.game.physics.arcade.enable(carRange);
+    carRange.body.immovable = true;
+    
+    let carWeapon = this.defenseLayer.create(x, y, 'w1');
+    carWeapon.enableBody = true;
+    carWeapon.name = 'carWeapon';
+    carWeapon.anchor.setTo(0.5, 0.5);
+    carWeapon.scale.setTo(U.ratioS, U.ratioS);
+    carWeapon.frame = 3;
+    carWeapon.physicsBodyType = Phaser.Physics.ARCADE;
+    this.game.physics.arcade.enable(carWeapon);
+    carWeapon.body.immovable = true;
+    carWeapon.data.fireRate = 1000;
+    carWeapon.data.fireRateTimeout = 0;
+    carWeapon.animations.add('fire', [0, 1, 2, 3, 4, 5, 6], 30, false);
+
+    drons.push(carWeapon);
+    dronsObj['car-w1'] = carWeapon;
+
+
+    const dronsLength = car.dronsAmount;
+    
+    for (let i = 0; i < dronsLength; i ++) {
+      const x = this.game.width / dronsLength * (i + 1) - this.game.width / dronsLength / 2;
       const y = this.game.height - 40 * U.ratio;
-      let weapon = this.defenseLayer.create(x, y, 'w1');
-      weapon.enableBody = true;
-      weapon.name = 'w1';
-      weapon.anchor.setTo(0.5, 0.5);
-      weapon.scale.setTo(U.ratioS, U.ratioS);
-      // weapon.animations.add('rolling', [0, 1, 2, 3, 5, 6, 7], 15, true);
-      weapon.frame = 3;
-      weapon.physicsBodyType = Phaser.Physics.ARCADE;
-      this.game.physics.arcade.enable(weapon);
-      weapon.body.immovable = true;
+      const dronId = 'dron' + i;
 
-      weapon.animations.add('fire', [3, 4, 5], 10, false);
+      let base = this.defenseLayer.create(x, y, 'base');
+      base.enableBody = true;
+      base.frame = 0;
+      base.name = 'base';
+      base.anchor.setTo(0.5, 0.5);
+      base.scale.setTo(U.ratioS, U.ratioS);
+      this.game.physics.arcade.enable(base);
+      base.body.immovable = true;
+      base.animations.add('open', [0, 1, 2, 3, 4, 5, 6], 30, false);
+      base.animations.add('close', [6, 5, 4, 3, 2, 1, 0], 30, false);
 
-      weapons.push(weapon);
+      let range = this.rangeLayer.create(x, y, 'range-w1');
+      range.enableBody = true;
+      range.frame = 0;
+      range.name = 'range';
+      range.dron = dronId;
+      range.anchor.setTo(0.5, 0.5);
+      range.scale.setTo(U.ratioS, U.ratioS);
+      this.game.physics.arcade.enable(range);
+      range.body.immovable = true;
+      
+      let dron = this.defenseLayer.create(x, y, 'w1');
+      dron.enableBody = true;
+      dron.name = 'dron';
+      dron.anchor.setTo(0.5, 0.5);
+      dron.scale.setTo(U.ratioS, U.ratioS);
+      dron.frame = 3;
+      dron.physicsBodyType = Phaser.Physics.ARCADE;
+      this.game.physics.arcade.enable(dron);
+      dron.body.immovable = true;
+      dron.data.fireRate = 1000;
+      dron.data.fireRateTimeout = 0;
+      dron.animations.add('fire', [0, 1, 2, 3, 4, 5, 6], 30, false);
 
+      drons.push(dron);
 
+      dronsObj[dronId] = dron;
     }
 
-    for (let i = 0; i < 100; i ++) {
-      let enemy = this.enemiesLayer.create(this.game.width / 100 * (i + 1), (20 + Math.round(Math.random() * 10)) * U.ratio, 'enemy-bug');
-      enemy.enableBody = true;
-      enemy.name = 'enemy-bug';
-      enemy.speed = 100 + Math.round(Math.random() * 10);
-      enemy.anchor.setTo(0.5, 0.5);
-      enemy.scale.setTo(U.ratioS, U.ratioS);
-      enemy.physicsBodyType = Phaser.Physics.ARCADE;
-      this.game.physics.arcade.enable(enemy);
-      // enemy.animations.add('rolling', [0, 1, 2, 3, 5, 6, 7], 15, true);
-      enemy.frame = 0;
-      enemy.collideWorldBounds = true;
-      // console.log(enemy, weapon);
+    this.defenseLayer.children.forEach(dron => {
+      if (dron.name === 'dron') {
+        dron.visible = false;
+      }
+    });
 
-      let weapon;
-      let distance = 100000000;
-      weapons.forEach(weapon_ => {
-        const distance_ = this.game.physics.arcade.distanceBetween(enemy, weapon_);
-        if (distance_ < distance) {
-          weapon = weapon_;
-          distance = distance_;
-        }
-      });
+    for (let i = 0; i < subLevel.enemies.length; i ++) {
+      console.log(subLevel.enemies[i]);
+      for (let j = 0; j < subLevel.enemies[i].count; j ++) {
+        const x = (this.game.width + Math.round(Math.random() * 10));
+        const y = this.game.height / subLevel.enemies[i].count * (j + 1);
 
-      this.game.physics.arcade.moveToObject(enemy, weapon, enemy.speed);
-      enemy.rotation = this.game.physics.arcade.angleBetween(enemy, weapon) + U.getRadians(270);
-      weapon.rotation = this.game.physics.arcade.angleBetween(weapon, enemy) + U.getRadians(90);
+        let enemy = this.enemiesLayer.create(
+          x,
+          y,
+          'enemy-' + subLevel.enemies[i].type
+        );
+
+        enemy.enableBody = true;
+        enemy.name = 'enemy-' + subLevel.enemies[i].type;
+        enemy.speed = 120 + Math.round(Math.random() * 5);
+        enemy.anchor.setTo(0.5, 0.5);
+        enemy.scale.setTo(U.ratioS, U.ratioS);
+        enemy.physicsBodyType = Phaser.Physics.ARCADE;
+        this.game.physics.arcade.enable(enemy);
+        // enemy.animations.add('rolling', [0, 1, 2, 3, 5, 6, 7], 15, true);
+        enemy.frame = 0;
+        enemy.collideWorldBounds = true;
+        // console.log(enemy, dron);
+
+        // let dron;
+        // let distance = 100000000;
+        // drons.forEach(dron_ => {
+        //   const distance_ = this.game.physics.arcade.distanceBetween(enemy, dron_);
+        //   if (distance_ < distance) {
+        //     dron = dron_;
+        //     distance = distance_;
+        //   }
+        // });
+
+        this.game.physics.arcade.moveToObject(enemy, carModel, enemy.speed);
+        enemy.rotation = this.game.physics.arcade.angleBetween(enemy, carModel) + U.getRadians(270);
+        // dron.rotation = this.game.physics.arcade.angleBetween(dron, enemy) + U.getRadians(90);
+      }
     }
 
     this.enemiesLayer.children.forEach(enemy => {
@@ -119,6 +220,7 @@ export default class extends Phaser.State {
         this.play();
         btnPlay.hide();
         btnPause.show();
+        levelBg.play('ride');
       },
       cls: 'icon-play3'
     });
@@ -132,6 +234,7 @@ export default class extends Phaser.State {
         this.pause();
         btnPlay.show();
         btnPause.hide();
+        levelBg.animations.stop();
       },
       cls: 'icon-pause2',
       hidden: true
@@ -163,7 +266,7 @@ export default class extends Phaser.State {
             {
               label: '<span class="icon-menu"></span> Main menu',
               click: () => {
-                this.state.start('Home');
+                this.state.start('Play');
               }
             },
             {
@@ -178,61 +281,52 @@ export default class extends Phaser.State {
       cls: 'icon-menu'
     });
 
-    // U.btns.add({
-    //   type: 'back',
-    //   click: () => {
-    //     this.state.start('Home');
-    //   }
-    // });
+    const btnAddDrons = U.btns.add({
+      x: U.view.w - 54,
+      y: U.view.h - 50,
+      w: 40,
+      h: 40,
+      click: () => {
+        this.defenseLayer.children.forEach(dron => {
+          if (dron.name === 'dron') {
+            dron.visible = true;
+          }
+        });
+      },
+      cls: 'icon-power'
+    });
 
-    // let btnHome = this.addButton('Home', x, y, () => {
-    //   this.state.start('Home', true, false);
-    // });
-    
-    // x = this.game.world.width - (128 + 10 * U.ratio);
-    // let btnPlay = this.addButton('Play', x, y, () => {
-    //   this.btnClickPlay(btnPlay);
-    // });
-    
-    // x = this.game.world.centerX;
-    // y = this.game.world.centerY;
-    // let btnMenuReturn = this.addButton('MenuReturn', x, y, () => {
-    //   console.log('return');
-    // });
-    
-    // y = y - 74 * U.ratio;
-    // let btnMenuMarket = this.addButton('MenuMarket', x, y, () => {
-    //   console.log('market', btnMenuMarket);
-    // });
-    
-    // y = y - 74 * U.ratio;
-    // let btnMenuLab = this.addButton('MenuLab', x, y, () => {
-    //   console.log('lab', btnMenuLab);
-    // });
-    
-    // y = y + 222 * U.ratio;
-    // let btnMenuSettings = this.addButton('MenuSettings', x, y, () => {
-    //   console.log('settings');
-    // });
-    
-    // y = y + 74 * U.ratio;
-    // let btnMenuEnd = this.addButton('MenuEnd', x, y, () => {
-    //   console.log('end');
-    // });
+    btnPlay.click();
 
-    // this.clickDetect();
-    // console.log(this.game, btnPlay);
+    console.log(this.game.physics.arcade);
   }
 
   update() {
-    this.game.physics.arcade.collide(this.enemiesLayer, this.defenseLayer, (enemy, weapon) => {
+    this.game.physics.arcade.collide(this.enemiesLayer, this.defenseLayer, (enemy, dron) => {
       // console.log('collide', enemy);
       // enemy.speed = 0;
       enemy.body.velocity.x = 0;
       enemy.body.velocity.y = 0;
-      enemy.kill();
+    });
 
-      weapon.animations.play('fire');
+    this.game.physics.arcade.overlap(this.enemiesLayer, this.rangeLayer, (enemy, range) => {
+      let dron = dronsObj[range.dron];
+      const fireRateTimeout = new Date().getTime() - dron.data.fireRateTimeout;
+      // console.log(dron);
+      dron.rotation = this.game.physics.arcade.angleBetween(dron, enemy) + U.getRadians(90);
+
+      if (fireRateTimeout >= dron.data.fireRate) {
+        enemy.kill();
+        dron.animations.play('fire');
+        dron.data.fireRateTimeout = new Date().getTime();
+        const aliveEnemies = this.enemiesLayer.children.filter(enemy => enemy.alive);
+        if (aliveEnemies.length === 0) {
+          U.mem.set('win', 1);
+          this.state.start('Win');
+        }
+      } else {
+        
+      }
     });
   }
 
@@ -241,68 +335,6 @@ export default class extends Phaser.State {
       // this.game.debug.spriteInfo(this.mushroom, 32, 32)
     }
   }
-
-  // addButton(labelText, x, y, callback) {
-  //   const buttonFrames = getButtonFrame(labelText);
-  //   let btn = this.game.add.group();
-  //   let button;
-
-  //   switch(labelText) {
-  //     case 'Home':
-  //     case 'Play':
-  //       button = this.game.add.button(
-  //         x,
-  //         y,
-  //         'button-mini',
-  //         null,
-  //         this,
-  //         buttonFrames.over,
-  //         buttonFrames.out,
-  //         buttonFrames.down,
-  //         buttonFrames.up
-  //       );
-
-  //       clickArr.push({
-  //         xMin: x / U.ratio,
-  //         xMax: x / U.ratio + 32,
-  //         yMin: y / U.ratio,
-  //         yMax: y / U.ratio + 32,
-  //         callback: callback
-  //       });
-  //       break;
-      
-  //     case 'MenuReturn':
-  //     case 'MenuLab':
-  //     case 'MenuMarket':
-  //     case 'MenuSettings':
-  //     case 'MenuEnd':
-  //       button = this.game.add.button(
-  //         x,
-  //         y,
-  //         'button-menu',
-  //         null,
-  //         this,
-  //         buttonFrames.over,
-  //         buttonFrames.out,
-  //         buttonFrames.down,
-  //         buttonFrames.up
-  //       );
-
-  //       clickArr.push({
-  //         xMin: x / U.ratio - 64 * U.ratio,
-  //         xMax: x / U.ratio + 64 * U.ratio,
-  //         yMin: y / U.ratio - 16 * U.ratio,
-  //         yMax: y / U.ratio + 16 * U.ratio,
-  //         callback: callback
-  //       });
-  //       break;
-  //   }
-
-  //   button.enableBody = true;
-  //   // button.anchor.set(0.5);
-    
-  //   return button;
-  // }
 
   play() {
     this.enemiesLayer.children.forEach(enemy => {
@@ -315,35 +347,4 @@ export default class extends Phaser.State {
       enemy.body.enable = false;
     });
   }
-
-  // btnClickPlay(btn) {
-  //   console.log('play', btn.frame);
-
-  //   if (typeof btn.frame === 'undefined' || btn.frame === 0) {
-  //     this.play();
-  //     btn.frame = 1;
-  //   } else if (btn.frame === 1) {
-  //     this.pause();
-  //     btn.frame = 0;
-  //   }
-  // }
-
-  // clickDetect() {
-  //   this.game.input.onDown.add(pointer => {
-  //     if (pointer.id === 1) {
-  //       console.log(this.game.input.x, this.game.input.y);
-  //       let x = this.game.input.x;
-  //       let y = this.game.input.y;
-  //       let clickArrFiltered = clickArr.filter(click => click.xMin <= x
-  //         && click.xMax >= x
-  //         && click.yMin <= y
-  //         && click.yMax >= y
-  //       );
-
-  //       if (clickArrFiltered.length && clickArrFiltered[0].callback) {
-  //         clickArrFiltered[0].callback();
-  //       }
-  //     }
-  //   }, this);
-  // }
 }

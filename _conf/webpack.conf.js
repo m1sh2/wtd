@@ -28,7 +28,7 @@ const webpackConf = {
     loaders: [
       {
         test: /\.png$/,
-        loader: 'file?name=images/[name].[ext]',
+        loader: 'file-loader?name=images/[name].[ext]',
         include: path.join(__dirname, '../_src/assets/images')
       },
       {

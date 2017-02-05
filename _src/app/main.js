@@ -10,12 +10,15 @@ import SettingsState from './states/settings/settings';
 import LabState from './states/lab/lab';
 import MarketState from './states/market/market';
 import PlayState from './states/play/play';
+import WinState from './states/win/win';
 
 import { U } from './utils/';
 
 class Game extends Phaser.Game {
 
   constructor () {
+    // StartAppSDK.init(this, '200270695', true);
+
     let width = document.documentElement.clientWidth * U.ratio;
     let height = document.documentElement.clientHeight * U.ratio;
 
@@ -29,6 +32,7 @@ class Game extends Phaser.Game {
     this.state.add('Lab', LabState, false);
     this.state.add('Market', MarketState, false);
     this.state.add('Play', PlayState, false);
+    this.state.add('Win', WinState, false);
 
     this.state.start('Boot');
   }

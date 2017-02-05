@@ -18,6 +18,7 @@ import { setCenter } from './set-center';
 import { setResponsiveWidth } from './set-responsive-width';
 
 import { hasChildren } from './has-children';
+import { getStorage, setStorage } from './storage';
 
 export const U = {
   btns: {
@@ -38,6 +39,11 @@ export const U = {
   menu: {
     add: addMenu,
     remove: removeMenu
+  },
+
+  mem: {
+    get: getStorage,
+    set: setStorage
   },
 
   ratio: getRatio.ratio,

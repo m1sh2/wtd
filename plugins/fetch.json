@@ -14,5 +14,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com.appodeal.plugin": {
+        "source": {
+            "type": "registry",
+            "id": "com.appodeal.plugin"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

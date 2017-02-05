@@ -17,9 +17,9 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="weapon-base.svg"
-   inkscape:export-filename="/Users/mike/Documents/my/wtd/src/files/images/weapon-base-2.png"
-   inkscape:export-xdpi="36"
-   inkscape:export-ydpi="36">
+   inkscape:export-filename="/Users/mike/Documents/my/wtd/_src/assets/images/weapons/weapon-base-2.png"
+   inkscape:export-xdpi="72"
+   inkscape:export-ydpi="72">
   <defs
      id="defs4394">
     <linearGradient
@@ -989,9 +989,9 @@
      inkscape:snap-center="true"
      inkscape:snap-object-midpoints="true"
      inkscape:window-width="1280"
-     inkscape:window-height="751"
+     inkscape:window-height="752"
      inkscape:window-x="0"
-     inkscape:window-y="1"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:snap-global="true"
      inkscape:snap-intersection-paths="true"
@@ -1012,7 +1012,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

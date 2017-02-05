@@ -81,4 +81,31 @@
 .icon-arrow-left:before {
   content: "\ea38";
 }
+.icon-trophy:before {
+  content: "\e99e";
+}
+.icon-gift:before {
+  content: "\e99f";
+}
+.icon-fire:before {
+  content: "\e9a9";
+}
+.icon-airplane:before {
+  content: "\e9af";
+}
+.icon-target:before {
+  content: "\e9b3";
+}
+.icon-shield:before {
+  content: "\e9b4";
+}
+.icon-power:before {
+  content: "\e9b5";
+}
+.icon-checkmark:before {
+  content: "\e601";
+}
+.icon-plus:before {
+  content: "\e608";
+}
 

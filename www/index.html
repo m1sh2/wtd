@@ -17,6 +17,42 @@
 
   <div id="content"></div>
   <div id="buttons"></div>
+  <div id="debug"></div>
+  <script>
+    var debug = ;
+    document.addEventListener('deviceready', function() {
+      var appKey = "fee50c333ff3825fd6ad6d38cff78154de3025546d47a84f";
+      Appodeal.disableLocationPermissionCheck();
+      Appodeal.initialize(appKey, Appodeal.REWARDED_VIDEO);
+      Appodeal.enableRewardedVideoCallbacks(true);
+    }, false);
+
+    document.addEventListener('onRewardedVideoLoaded', function(){
+      var div = document.createElement('div');
+      div.innerHTML = 'onRewardedVideoLoaded';
+      document.getElementById('debug').appendChild(div);
+    });
+    document.addEventListener('onRewardedVideoFailedToLoad', function(){
+      var div = document.createElement('div');
+      div.innerHTML = 'onRewardedVideoFailedToLoad';
+      document.getElementById('debug').appendChild(div);
+    });
+    document.addEventListener('onRewardedVideoShown', function(){
+      var div = document.createElement('div');
+      div.innerHTML = 'onRewardedVideoShown';
+      document.getElementById('debug').appendChild(div);
+    });
+    document.addEventListener('onRewardedVideoFinished', function(data){
+      var div = document.createElement('div');
+      div.innerHTML = 'Reward:' + data.amount + ' ' + data.name;
+      document.getElementById('debug').appendChild(div);
+    });
+    document.addEventListener('onRewardedVideoClosed', function(){
+      var div = document.createElement('div');
+      div.innerHTML = 'onRewardedVideoClosed';
+      document.getElementById('debug').appendChild(div);
+    });
+  </script>
   <script src="js/vendor.bundle.js"></script>
   <script src="js/app.bundle.js"></script>
 

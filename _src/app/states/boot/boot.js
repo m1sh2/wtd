@@ -2,9 +2,188 @@ import Phaser from 'phaser';
 import WebFont from 'webfontloader';
 import { U } from '../../utils/';
 
+const sets = {
+  hidden: false,
+  levels: [
+    {
+      id: 101,
+      label: 'North America',
+      locked: false,
+      subLevels: [
+        {
+          id: 201,
+          label: 'Nome',
+          complete: true,
+          locked: false,
+          enemies: [
+            {
+              type: 'bug',
+              count: 10
+            }
+          ],
+          bases: 3
+        },
+        {
+          id: 202,
+          label: 'Edmonton',
+          complete: true,
+          locked: false,
+          enemies: [
+            {
+              type: 'bug',
+              count: 20
+            }
+          ],
+          bases: 4
+        },
+        {
+          id: 203,
+          label: 'Winnipeg',
+          complete: true,
+          locked: false,
+          enemies: [
+            {
+              type: 'bug',
+              count: 30
+            }
+          ],
+          bases: 5
+        },
+        {
+          id: 204,
+          label: 'Ottawa',
+          complete: false,
+          locked: false,
+          enemies: [
+            {
+              type: 'bug',
+              count: 40
+            }
+          ],
+          bases: 6
+        },
+        {
+          id: 205,
+          label: 'New York',
+          complete: false,
+          locked: true,
+          enemies: [
+            {
+              type: 'bug',
+              count: 50
+            }
+          ],
+          bases: 7
+        },
+        {
+          id: 206,
+          label: 'Washington',
+          complete: false,
+          locked: true,
+          enemies: [
+            {
+              type: 'bug',
+              count: 60
+            }
+          ],
+          bases: 8
+        },
+        {
+          id: 207,
+          label: 'Nashville',
+          complete: false,
+          locked: true,
+        },
+        {
+          id: 208,
+          label: 'Dallas',
+          complete: false,
+          locked: true,
+        },
+        {
+          id: 209,
+          label: 'San Antonio',
+          complete: false,
+          locked: true,
+        },
+        {
+          id: 210,
+          label: 'Monterrey',
+          complete: false,
+          locked: true,
+        },
+        {
+          id: 211,
+          label: 'Guatemala',
+          complete: false,
+          locked: true,
+        },
+        {
+          id: 212,
+          label: 'San Miguel',
+          complete: false,
+          locked: true,
+        }
+      ]
+    },
+    {
+      id: 102,
+      label: 'South America',
+      locked: false,
+      subLevels: []
+    },
+    {
+      id: 103,
+      label: 'Europe',
+      locked: false,
+      subLevels: []
+    },
+    {
+      id: 104,
+      label: 'Asia',
+      locked: true,
+      subLevels: []
+    },
+    {
+      id: 105,
+      label: 'Australia',
+      locked: true,
+      subLevels: []
+    },
+    {
+      id: 106,
+      label: 'Africa',
+      locked: true,
+      subLevels: []
+    }
+  ],
+  user: {
+    car: 0,
+    carLevel: 0,
+    money: 1000,
+    score: 0
+  },
+  cars: [
+    {
+      speed: 100,
+      range: 100,
+      rate: 10,
+      dronsAmount: 1,
+      width: 80
+    }
+  ]
+};
+
 export default class extends Phaser.State {
   init () {
     this.stage.backgroundColor = '#333333';
+
+    // debug, development
+    localStorage.clear();
+
+    if (!U.mem.get('sets')) {
+      U.mem.set('sets', sets)
+    }
     // this.fontsReady = false
     // this.fontsLoaded = this.fontsLoaded.bind(this)
     setTimeout(() => {
@@ -37,7 +216,16 @@ export default class extends Phaser.State {
     this.load.spritesheet('wall', require('../../../assets/images/wall/wall.png'), 997, 85, 1);
 
     // Weapons
-    this.load.spritesheet('w1', require('../../../assets/images/weapons/weapon-gun-2.png'), 128, 128, 6);
+    this.load.spritesheet('w1', require('../../../assets/images/weapons/weapon-gun-2.png'), 288, 288, 6);
+    this.load.spritesheet('base', require('../../../assets/images/weapons/weapon-base-2.png'), 256, 256, 7);
+    this.load.spritesheet('range-w1', require('../../../assets/images/weapons/weapon-range-w1.png'), 1024, 1024, 1);
+
+    // Cars
+    this.load.spritesheet('car-1', require('../../../assets/images/3d/car-1.png'), 600, 300, 1);
+    this.load.spritesheet('car-1-range', require('../../../assets/images/weapons/weapon-range-w1.png'), 1024, 1024, 1);
+
+    // Levels
+    this.load.spritesheet('level-1', require('../../../assets/images/levels/level-1.png'), 2048, 1024, 8);
   }
 
   render () {

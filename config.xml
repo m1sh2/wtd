@@ -1,5 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="it.datsko.wallstodefense" version="1.0.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget
+    id="it.datsko.wallstodefense"
+    version="1.0.11"
+    xmlns="http://www.w3.org/ns/widgets"
+    xmlns:cdv="http://cordova.apache.org/ns/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
     <name>Walls To Defense</name>
     <icon src="_src/assets/images/logo-512.png" />
     <description>
@@ -10,6 +16,7 @@
     </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -25,6 +32,26 @@
         <splash src="_src/assets/images/media/android/splash-xhdpi-1280x720.png" density="land-xhdpi"/>
         <splash src="_src/assets/images/media/android/splash-xxhdpi-1600x960.png" density="land-xxhdpi"/>
         <splash src="_src/assets/images/media/android/splash-xxxhdpi-1920x1280.png" density="land-xxxhdpi"/>
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="./application">
+            <activity android:name="com.startapp.android.publish.ads.list3d.List3DActivity" android:theme="@android:style/Theme" />
+            <activity android:name="com.startapp.android.publish.adsCommon.activities.OverlayActivity" android:theme="@android:style/Theme.Translucent" android:configChanges="orientation|keyboardHidden|screenSize" />
+            <activity android:name="com.startapp.android.publish.adsCommon.activities.FullScreenActivity" android:theme="@android:style/Theme" android:configChanges="orientation|keyboardHidden|screenSize" />
+            <service android:name="com.startapp.android.publish.common.metaData.PeriodicMetaDataService" />
+            <receiver android:name="com.startapp.android.publish.common.metaData.BootCompleteListener" >
+                <intent-filter>
+                    <action android:name="android.intent.action.BOOT_COMPLETED" />
+                </intent-filter>
+            </receiver>
+        </config-file>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -36,5 +63,4 @@
     <preference name="BackgroundColor" value="0x000000ff" />
     <preference name="HideKeyboardFormAccessoryBar" value="true" />
     <preference name="Orientation" value="landscape" />
-    <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
 </widget>

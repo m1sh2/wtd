@@ -12,6 +12,9 @@
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "it.datsko.wallstodefense"
+        },
+        "com.appodeal.plugin": {
+            "PACKAGE_NAME": "it.datsko.wallstodefense"
         }
     },
     "dependent_plugins": {}
